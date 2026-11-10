@@ -1,0 +1,38 @@
+import { NextResponse } from "next/server";
+import { getSupabaseAdmin } from "@/lib/supabase";
+import { requireAdmin } from "@/lib/auth";
+
+/** 软删除（隐藏）帖子：仅管理员 / 站主 */
+export async function DELETE(
+  req: Request,
+  ctx: { params: Promise<{ id: string }> },
+) {
+  const auth = requireAdmin(req);
+  if (!auth.ok) {
+    return NextResponse.json({ error: "未授权" }, { status: 401 });
+  }
+
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    return NextResponse.json(
+      { error: "服务端未配置 Supabase（缺少 SUPABASE_SERVICE_ROLE_KEY）" },
+      { status: 503 },
+    );
+  }
+
+  const { id } = await ctx.params;
+  if (!/^[0-9a-f-]{36}$/i.test(id)) {
+    return NextResponse.json({ error: "帖子 ID 不合法" }, { status: 400 });
+  }
+
+  const { error } = await supabase
+    .from("posts")
+    .update({ hidden: true })
+    .eq("id", id);
+
+  if (error) {
+    return NextResponse.json({ error: "删除失败" }, { status: 500 });
+  }
+
+  return NextResponse.json({ ok: true });
+}

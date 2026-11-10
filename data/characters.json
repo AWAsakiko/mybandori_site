@@ -1,0 +1,1043 @@
+[
+  {
+    "id": "kasumi",
+    "nameZh": "户山香澄",
+    "nameJa": "戸山 香澄",
+    "nameRomaji": "Toyama Kasumi",
+    "bandId": "poppin-party",
+    "part": "主唱 / 吉他手",
+    "heightCm": 156,
+    "birthday": "7月14日",
+    "zodiac": "巨蟹座",
+    "themeColor": null,
+    "supportColor": "#FF5522",
+    "voiceActress": {
+      "nameJa": "爱美"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中二年级",
+    "bio": "Poppin'Party乐队的主唱兼吉他手。喜欢冒险和唱卡拉OK。",
+    "tags": [],
+    "image": "/images/characters/poppin-party/kasumi.webp"
+  },
+  {
+    "id": "tae",
+    "nameZh": "花园多惠",
+    "nameJa": "花園たえ",
+    "nameRomaji": "Hanazono Tae",
+    "bandId": "poppin-party",
+    "part": "吉他手",
+    "heightCm": 164,
+    "birthday": "12月4日",
+    "zodiac": "射手座",
+    "themeColor": null,
+    "supportColor": "#0077DD",
+    "voiceActress": {
+      "nameJa": "大塚纱英"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中二年级",
+    "bio": "Poppin'Party乐队的主音吉他手，Poppin'Party里身高最高的一个，ppp的高人（一语双关），就读花咲川女子学园。兴趣是跑步（不会勉强去跑）、黏土、泡澡。",
+    "tags": [],
+    "image": "/images/characters/poppin-party/tae.webp"
+  },
+  {
+    "id": "rimi",
+    "nameZh": "牛込里美",
+    "nameJa": "牛込 りみ",
+    "nameRomaji": "Ushigome Rimi",
+    "bandId": "poppin-party",
+    "part": "贝斯手",
+    "heightCm": 150,
+    "birthday": "3月23日",
+    "zodiac": "白羊座",
+    "themeColor": null,
+    "supportColor": "#FF55BB",
+    "voiceActress": {
+      "nameJa": "西本里美"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中二年级",
+    "bio": "Poppin'Party乐队的贝斯手，就读于花咲川女子学园。兴趣是游戏和读书，还有摄影的专长，平常会纪录乐团的日常。",
+    "tags": [],
+    "image": "/images/characters/poppin-party/rimi.webp"
+  },
+  {
+    "id": "saya",
+    "nameZh": "山吹沙绫",
+    "nameJa": "山吹 沙綾",
+    "nameRomaji": "Yamabuki Saya",
+    "bandId": "poppin-party",
+    "part": "鼓手",
+    "heightCm": 157,
+    "birthday": "5月19日",
+    "zodiac": "金牛座",
+    "themeColor": null,
+    "supportColor": "#FFCC11",
+    "voiceActress": {
+      "nameJa": "大桥彩香"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中二年级",
+    "bio": "乐器： Roland TD-11K(动画第一季于流星堂仓库内使用) Pearl Reference PURE Drum Kit Snare Drum：MCT1455S/C-SAYA 在动画第三季中已购置站立式的新鼓组:Pearl Artisan Custom",
+    "tags": [],
+    "image": "/images/characters/poppin-party/saya.webp",
+    "refs": {
+      "heightCm": 2,
+      "school": 1
+    }
+  },
+  {
+    "id": "arisa",
+    "nameZh": "市谷有咲",
+    "nameJa": "市ヶ谷 有咲",
+    "nameRomaji": "Ichigaya Arisa",
+    "bandId": "poppin-party",
+    "part": "键盘手",
+    "heightCm": 152,
+    "birthday": "10月27日",
+    "zodiac": "天蝎座",
+    "themeColor": null,
+    "supportColor": "#AA66DD",
+    "voiceActress": {
+      "nameJa": "伊藤彩沙"
+    },
+    "school": "花咲川女子学园",
+    "grade": null,
+    "bio": "Poppin'Party乐队的键盘手，就读花咲川女子学园。喜欢的食物有豆沙水果凉粉、玄米、白煮蛋，讨厌葱类的食物。",
+    "tags": [],
+    "image": "/images/characters/poppin-party/arisa.webp"
+  },
+  {
+    "id": "ran",
+    "nameZh": "美竹兰",
+    "nameJa": "美竹 蘭",
+    "nameRomaji": "Mitake Ran",
+    "bandId": "afterglow",
+    "part": "主唱 / 吉他手",
+    "heightCm": 157,
+    "birthday": "4月10日",
+    "zodiac": "白羊座",
+    "themeColor": null,
+    "supportColor": "#EE0022",
+    "voiceActress": {
+      "nameJa": "佐仓绫音"
+    },
+    "school": "羽丘女子学园",
+    "grade": "高中二年级",
+    "bio": "就读于羽丘女子学园。拥有百年历史的花道家族中的独生女，起初却在父亲的反对下组乐团。",
+    "tags": [],
+    "image": "/images/characters/afterglow/ran.webp"
+  },
+  {
+    "id": "moca",
+    "nameZh": "青叶摩卡",
+    "nameJa": "青葉 モカ",
+    "nameRomaji": "Aoba Moca",
+    "bandId": "afterglow",
+    "part": "吉他手",
+    "heightCm": 158,
+    "birthday": "9月3日",
+    "zodiac": "处女座",
+    "themeColor": null,
+    "supportColor": "#00CCAA",
+    "voiceActress": {
+      "nameJa": "三泽纱千香"
+    },
+    "school": "羽丘女子学园",
+    "grade": null,
+    "bio": "Afterglow的吉他手。",
+    "tags": [],
+    "image": "/images/characters/afterglow/moca.webp",
+    "refs": {
+      "heightCm": 1
+    }
+  },
+  {
+    "id": "himari",
+    "nameZh": "上原绯玛丽",
+    "nameJa": "上原 ひまり",
+    "nameRomaji": "Uehara Himari",
+    "bandId": "afterglow",
+    "part": "贝斯手",
+    "heightCm": 155,
+    "birthday": "10月23日",
+    "zodiac": "天秤座",
+    "themeColor": null,
+    "supportColor": "#FF9999",
+    "voiceActress": {
+      "nameJa": "加藤英美里"
+    },
+    "school": "羽丘女子学园",
+    "grade": "高中一年级",
+    "bio": "乐队Afterglow的贝斯手，就读于羽丘女子学园。性格开朗和善的开心果，经常因为不会察言观色而导致最后白忙一场。",
+    "tags": [],
+    "image": "/images/characters/afterglow/himari.webp",
+    "refs": {
+      "grade": 1
+    }
+  },
+  {
+    "id": "tomoe",
+    "nameZh": "宇田川巴",
+    "nameJa": "宇田川 巴",
+    "nameRomaji": "Udagawa Tomoe",
+    "bandId": "afterglow",
+    "part": "鼓手",
+    "heightCm": 168,
+    "birthday": "4月15日",
+    "zodiac": "白羊座",
+    "themeColor": null,
+    "supportColor": "#BB0033",
+    "voiceActress": {
+      "nameJa": "日笠阳子"
+    },
+    "school": "羽丘女子学园",
+    "grade": null,
+    "bio": "就读于羽丘女子学园。性格豪爽干脆，不会轻易批评或怨恨他人。",
+    "tags": [],
+    "image": "/images/characters/afterglow/tomoe.webp"
+  },
+  {
+    "id": "tsugumi",
+    "nameZh": "羽泽鸫",
+    "nameJa": "羽沢 つぐみ",
+    "nameRomaji": "Hazawa Tsugumi",
+    "bandId": "afterglow",
+    "part": "键盘手",
+    "heightCm": 156,
+    "birthday": "1月7日",
+    "zodiac": "摩羯座",
+    "themeColor": null,
+    "supportColor": "#FFEE88",
+    "voiceActress": {
+      "nameJa": "金元寿子"
+    },
+    "school": "羽丘女子学园",
+    "grade": null,
+    "bio": "Afterglow中最平凡（阿卡林）的女孩子，但是正因为普通的关系，是一个努力家，无论多小的事都不会放弃。就读于羽丘女子学园，是一名学生会干事。",
+    "tags": [],
+    "image": "/images/characters/afterglow/tsugumi.webp"
+  },
+  {
+    "id": "kokoro",
+    "nameZh": "弦卷心",
+    "nameJa": "弦巻 こころ",
+    "nameRomaji": "Tsurumaki Kokoro",
+    "bandId": "hello-happy-world",
+    "part": "主唱",
+    "heightCm": 155,
+    "birthday": "8月8日",
+    "zodiac": "狮子座",
+    "themeColor": null,
+    "supportColor": "#FFEE22",
+    "voiceActress": {
+      "nameJa": "伊藤美来"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中一年级",
+    "bio": "乐队Hello, Happy World!的主唱，同样也是HHW三笨蛋之一，相当富裕的家庭的独生女，只要萌生了“想要做”的念头无论如何都会去实现。好奇心旺盛，眼神中总是充满着好奇心的光芒。",
+    "tags": [],
+    "image": "/images/characters/hello-happy-world/kokoro.webp",
+    "refs": {
+      "grade": 1
+    }
+  },
+  {
+    "id": "kaoru",
+    "nameZh": "濑田薰",
+    "nameJa": "瀬田 薫",
+    "nameRomaji": "Seta Kaoru",
+    "bandId": "hello-happy-world",
+    "part": "吉他手",
+    "heightCm": 170,
+    "birthday": "2月28日",
+    "zodiac": "双鱼座",
+    "themeColor": null,
+    "supportColor": "#AA33CC",
+    "voiceActress": {
+      "nameJa": "田所梓"
+    },
+    "school": "四叶女子大学",
+    "grade": null,
+    "bio": "== 「儚い」（简介） == 就读于四叶女子大学。高中时是演剧部的成员，粉丝众多，在学校里十分有名，因此在校内总是被粉丝包围（羽丘学院小地图也能看到她被fans围住的样子进入大学篇后该场景被转移到商店街）。",
+    "tags": [],
+    "image": "/images/characters/hello-happy-world/kaoru.webp"
+  },
+  {
+    "id": "hagumi",
+    "nameZh": "北泽育美",
+    "nameJa": "北沢 はぐみ",
+    "nameRomaji": "Kitazawa Hagumi",
+    "bandId": "hello-happy-world",
+    "part": "贝斯手",
+    "heightCm": 152,
+    "birthday": "7月30日",
+    "zodiac": "狮子座",
+    "themeColor": null,
+    "supportColor": "#FF9922",
+    "voiceActress": {
+      "nameJa": "吉田有里"
+    },
+    "school": "花咲川女子学园",
+    "grade": null,
+    "bio": "总是十分开朗活泼，感性而又纯粹的孩子。运动神经非常好，是当地的垒球队的王牌选手及队长，被队员称作Captain，就读花咲川女子学园。",
+    "tags": [],
+    "image": "/images/characters/hello-happy-world/hagumi.webp"
+  },
+  {
+    "id": "kanon",
+    "nameZh": "松原花音",
+    "nameJa": "松原 花音",
+    "nameRomaji": "Matsubara Kanon",
+    "bandId": "hello-happy-world",
+    "part": "鼓手",
+    "heightCm": 156,
+    "birthday": "5月11日",
+    "zodiac": "金牛座",
+    "themeColor": null,
+    "supportColor": "#44DDFF",
+    "voiceActress": {
+      "nameJa": "丰田萌绘"
+    },
+    "school": "庆鹏女子大学",
+    "grade": null,
+    "bio": "就读庆鹏女子大学文学部。因为内向的关系整天提心吊胆，稍微有点笨拙。",
+    "tags": [],
+    "image": "/images/characters/hello-happy-world/kanon.webp"
+  },
+  {
+    "id": "misaki",
+    "nameZh": "奥泽美咲",
+    "nameJa": "奥沢 美咲",
+    "nameRomaji": "Okusawa Misaki",
+    "bandId": "hello-happy-world",
+    "part": "DJ",
+    "heightCm": 157,
+    "birthday": "10月1日",
+    "zodiac": "天秤座",
+    "themeColor": null,
+    "supportColor": "#006599",
+    "voiceActress": {
+      "nameJa": "黑泽朋世"
+    },
+    "school": "花咲川女子学园",
+    "grade": null,
+    "bio": "以“普普通通就是最好”为座右铭，稍微有点冷淡的女孩子。就读于花咲川女子学园。",
+    "tags": [],
+    "image": "/images/characters/hello-happy-world/misaki.webp"
+  },
+  {
+    "id": "aya",
+    "nameZh": "丸山彩",
+    "nameJa": "丸山 彩",
+    "nameRomaji": "Maruyama Aya",
+    "bandId": "pastel-palettes",
+    "part": "主唱",
+    "heightCm": 156,
+    "birthday": "12月27日",
+    "zodiac": "摩羯座",
+    "themeColor": null,
+    "supportColor": "#FF88BB",
+    "voiceActress": {
+      "nameJa": "前岛亚美"
+    },
+    "school": "四叶女子大学",
+    "grade": null,
+    "bio": "Pastel*Palettes乐队的主唱，就读于四叶女子大学文学部。喜欢浏览交友网站和研究自拍。",
+    "tags": [],
+    "image": "/images/characters/pastel-palettes/aya.webp"
+  },
+  {
+    "id": "hina",
+    "nameZh": "冰川日菜",
+    "nameJa": "氷川 日菜",
+    "nameRomaji": "Hakawa Hina",
+    "bandId": "pastel-palettes",
+    "part": "吉他手",
+    "heightCm": 156,
+    "birthday": "3月20日",
+    "zodiac": "双鱼座",
+    "themeColor": null,
+    "supportColor": "#55DDEE",
+    "voiceActress": {
+      "nameJa": "小泽亚李"
+    },
+    "school": "庆鹏女子大学",
+    "grade": "大学一年级",
+    "bio": "Pastel*Palettes乐队的吉他手，就读于庆鹏女子大学人类科学部。喜欢制作香薰精油。",
+    "tags": [],
+    "image": "/images/characters/pastel-palettes/hina.webp"
+  },
+  {
+    "id": "chisato",
+    "nameZh": "白鹭千圣",
+    "nameJa": "白鷺 千聖",
+    "nameRomaji": "Shirasagi Chisato",
+    "bandId": "pastel-palettes",
+    "part": "贝斯手",
+    "heightCm": 152,
+    "birthday": "4月6日",
+    "zodiac": "白羊座",
+    "themeColor": null,
+    "supportColor": "#FFEEAA",
+    "voiceActress": {
+      "nameJa": "上坂堇"
+    },
+    "school": "四叶女子大学",
+    "grade": null,
+    "bio": "Pastel*Palettes乐队的贝斯手，就读于四叶女子大学文学部。喜欢在咖啡厅喝茶和逛街。",
+    "tags": [],
+    "image": "/images/characters/pastel-palettes/chisato.webp"
+  },
+  {
+    "id": "maya",
+    "nameZh": "大和麻弥",
+    "nameJa": "大和 麻弥",
+    "nameRomaji": "Yamato Maya",
+    "bandId": "pastel-palettes",
+    "part": "鼓手",
+    "heightCm": null,
+    "birthday": "11月3日",
+    "zodiac": "天蝎座",
+    "themeColor": null,
+    "supportColor": "#99DD88",
+    "voiceActress": {
+      "nameJa": "中上育实"
+    },
+    "school": "庆鹏女子大学",
+    "grade": null,
+    "bio": "就读于庆鹏女子大学社会学部。宣称“被器材包围的时候最幸福”的如假包换的器材宅，聊起器材的话题便会滔滔不绝（兴♂奋）。",
+    "tags": [],
+    "image": "/images/characters/pastel-palettes/maya.webp"
+  },
+  {
+    "id": "eve",
+    "nameZh": "若宫伊芙",
+    "nameJa": "若宮 イヴ",
+    "nameRomaji": "Wakamiya Eve",
+    "bandId": "pastel-palettes",
+    "part": "键盘手",
+    "heightCm": null,
+    "birthday": "6月27日",
+    "zodiac": "巨蟹座",
+    "themeColor": null,
+    "supportColor": "#DDBBFF",
+    "voiceActress": {
+      "nameJa": "秦佐和子"
+    },
+    "school": "花咲川女子学园",
+    "grade": null,
+    "bio": "父亲是日本人，母亲是芬兰人的混血儿。归国子女。",
+    "tags": [],
+    "image": "/images/characters/pastel-palettes/eve.webp"
+  },
+  {
+    "id": "yukina",
+    "nameZh": "凑友希那",
+    "nameJa": "湊 友希那",
+    "nameRomaji": "Minato Yukina",
+    "bandId": "roselia",
+    "part": "主唱",
+    "heightCm": 155,
+    "birthday": "10月26日",
+    "zodiac": "天蝎座",
+    "themeColor": null,
+    "supportColor": "#881188",
+    "voiceActress": {
+      "nameJa": "相羽爱奈"
+    },
+    "school": "四叶女子大学",
+    "grade": null,
+    "bio": "就读于四叶女子大学艺术学部。内心坚定，绝不怀疑自己相信的事情，纯真的性格，偶尔也会对相信的事情过于盲目而忽视身边的事情。",
+    "tags": [],
+    "image": "/images/characters/roselia/yukina.webp"
+  },
+  {
+    "id": "sayo",
+    "nameZh": "冰川纱夜",
+    "nameJa": "氷川 紗夜",
+    "nameRomaji": "Hikawa Sayo",
+    "bandId": "roselia",
+    "part": "吉他手",
+    "heightCm": 161,
+    "birthday": "3月20日",
+    "zodiac": "双鱼座",
+    "themeColor": null,
+    "supportColor": "#00AABB",
+    "voiceActress": {
+      "nameJa": "工藤晴香"
+    },
+    "school": "庆鹏女子大学",
+    "grade": null,
+    "bio": "认真而又神经质，不知道取巧的性格。属于过于认真反而容易吃亏的类型。",
+    "tags": [],
+    "image": "/images/characters/roselia/sayo.webp"
+  },
+  {
+    "id": "lisa",
+    "nameZh": "今井莉莎",
+    "nameJa": "今井 リサ",
+    "nameRomaji": "Imai Lisa",
+    "bandId": "roselia",
+    "part": "贝斯手",
+    "heightCm": 158,
+    "birthday": "8月25日",
+    "zodiac": "处女座",
+    "themeColor": null,
+    "supportColor": "#DD2200",
+    "voiceActress": {
+      "nameJa": "中岛由贵"
+    },
+    "school": "四叶女子大学",
+    "grade": null,
+    "bio": "Roselia乐队的贝斯手，就读于四叶女子大学国际学部。喜欢编织和看恋爱故事，爱吃筑前煮和醋拌凉菜，讨厌绿色奶昔，怕鬼。",
+    "tags": [],
+    "image": "/images/characters/roselia/lisa.webp"
+  },
+  {
+    "id": "ako",
+    "nameZh": "宇田川亚子",
+    "nameJa": "宇田川 あこ",
+    "nameRomaji": "Udagawa Ako",
+    "bandId": "roselia",
+    "part": "鼓手",
+    "heightCm": 148,
+    "birthday": "7月3日",
+    "zodiac": "巨蟹座",
+    "themeColor": null,
+    "supportColor": "#DD0088",
+    "voiceActress": {
+      "nameJa": "樱川惠"
+    },
+    "school": "羽丘女子学园",
+    "grade": null,
+    "bio": "Roselia乐队的爵士鼓手。喜欢研究自己认为的很帅气的事。",
+    "tags": [],
+    "image": "/images/characters/roselia/ako.webp"
+  },
+  {
+    "id": "rinko",
+    "nameZh": "白金燐子",
+    "nameJa": "白金 燐子",
+    "nameRomaji": "Shirokane Rinko",
+    "bandId": "roselia",
+    "part": "键盘手",
+    "heightCm": 157,
+    "birthday": "10月17日",
+    "zodiac": "天秤座",
+    "themeColor": null,
+    "supportColor": "#BBBBBB",
+    "voiceActress": {
+      "nameJa": "志崎桦音"
+    },
+    "school": "四叶女子大学",
+    "grade": null,
+    "bio": "== 「……（简介）」 == Roselia乐队的键盘手。喜欢玩网络游戏和填字游戏，喜欢喝热牛奶，讨厌芹菜。",
+    "tags": [],
+    "image": "/images/characters/roselia/rinko.webp"
+  },
+  {
+    "id": "layer",
+    "nameZh": "LAYER",
+    "nameJa": "和奏レイ",
+    "nameRomaji": "LAYER",
+    "bandId": "raise-a-suilin",
+    "part": "主唱 / 贝斯手",
+    "heightCm": null,
+    "birthday": "1月13日",
+    "zodiac": "摩羯座",
+    "themeColor": null,
+    "supportColor": null,
+    "voiceActress": {
+      "nameJa": "Raychell"
+    },
+    "school": null,
+    "grade": null,
+    "bio": "RAISE A SUILEN 的主唱兼贝斯手，以艺名 LAYER 活动，真实身份为和奏瑞依。",
+    "tags": [],
+    "image": "/images/characters/raise-a-suilin/layer.webp",
+    "refs": {
+      "birthday": 1,
+      "nameJa": 1
+    }
+  },
+  {
+    "id": "lock",
+    "nameZh": "LOCK",
+    "nameJa": "朝日 六花",
+    "nameRomaji": "LOCK",
+    "bandId": "raise-a-suilin",
+    "part": "主吉他手",
+    "heightCm": null,
+    "birthday": "7月17日",
+    "zodiac": "巨蟹座",
+    "themeColor": null,
+    "supportColor": "#AAEE22",
+    "voiceActress": {
+      "nameJa": "小原莉子"
+    },
+    "school": "羽丘女子学园",
+    "grade": "高中二年级",
+    "bio": "朝日六花（朝日（あさひ） 六花（ろっか））是由日本娱乐公司Bushiroad策划的次世代少女乐队企划《BanG Dream!》及其衍生作品的登场角色，RAISE A SUILEN的吉他手，代号LOCK（ロック）。",
+    "tags": [],
+    "image": "/images/characters/raise-a-suilin/lock.webp",
+    "refs": {
+      "supportColor": 1
+    }
+  },
+  {
+    "id": "masking",
+    "nameZh": "MASKING",
+    "nameJa": "佐藤ますき",
+    "nameRomaji": "MASKING",
+    "bandId": "raise-a-suilin",
+    "part": "鼓手",
+    "heightCm": null,
+    "birthday": null,
+    "zodiac": null,
+    "themeColor": null,
+    "supportColor": null,
+    "voiceActress": {
+      "nameJa": "夏芽"
+    },
+    "school": null,
+    "grade": null,
+    "bio": "RAISE A SUILEN 的鼓手，以艺名 MASKING 活动，真实身份为佐藤益木。",
+    "tags": [],
+    "image": "/images/characters/raise-a-suilin/masking.webp",
+    "notes": {
+      "birthday": "争议待核对（候选：5月12日 / 5月11日 / 10月21日）"
+    },
+    "refs": {
+      "nameJa": 1
+    }
+  },
+  {
+    "id": "pareo",
+    "nameZh": "PAREO",
+    "nameJa": "鳰原 令王那",
+    "nameRomaji": "PAREO",
+    "bandId": "raise-a-suilin",
+    "part": "键盘手",
+    "heightCm": 161,
+    "birthday": "3月25日",
+    "zodiac": "白羊座",
+    "themeColor": null,
+    "supportColor": null,
+    "voiceActress": {
+      "nameJa": "仓知玲凤"
+    },
+    "school": null,
+    "grade": "初中三年级",
+    "bio": "鳰（rù）原令王那是由日本娱乐公司Bushiroad策划的次世代少女乐队企划《BanG Dream!》及其衍生作品的登场角色，RAISE A SUILEN的键盘手，代号PAREO（パレオ）。",
+    "tags": [],
+    "image": "/images/characters/raise-a-suilin/pareo.webp"
+  },
+  {
+    "id": "chu2",
+    "nameZh": "CHU²",
+    "nameJa": "珠手ちゆ",
+    "nameRomaji": "CHU²",
+    "bandId": "raise-a-suilin",
+    "part": "DJ",
+    "heightCm": 150,
+    "birthday": "12月7日",
+    "zodiac": "射手座",
+    "themeColor": null,
+    "supportColor": null,
+    "voiceActress": {
+      "nameJa": "纺木吏佐"
+    },
+    "school": null,
+    "grade": null,
+    "bio": "RAISE A SUILEN 的 DJ 兼制作人，以艺名 CHU² 活动，真实身份为珠手知由。",
+    "tags": [],
+    "image": "/images/characters/raise-a-suilin/chu2.webp",
+    "refs": {
+      "nameJa": 1
+    }
+  },
+  {
+    "id": "mashiro",
+    "nameZh": "仓田真白",
+    "nameJa": "倉田 ましろ",
+    "nameRomaji": "Kurata Mashiro",
+    "bandId": "morfonica",
+    "part": "主唱",
+    "heightCm": 154,
+    "birthday": "2月19日",
+    "zodiac": "双鱼座",
+    "themeColor": null,
+    "supportColor": "#6677CC",
+    "voiceActress": {
+      "nameJa": "近藤天音"
+    },
+    "school": "月之森女子学园",
+    "grade": null,
+    "bio": "文静又稳重的女孩。虽然读进了憧憬的贵族学校——月之森女子学院，但发现周围的学生个个才华横溢而备受打击。",
+    "tags": [],
+    "image": "/images/characters/morfonica/mashiro.webp",
+    "refs": {
+      "heightCm": 2,
+      "supportColor": 1
+    }
+  },
+  {
+    "id": "toko",
+    "nameZh": "桐谷透子",
+    "nameJa": "桐ヶ谷 透子",
+    "nameRomaji": "Kirigaya Toko",
+    "bandId": "morfonica",
+    "part": "吉他手",
+    "heightCm": 164,
+    "birthday": "12月16日",
+    "zodiac": "射手座",
+    "themeColor": null,
+    "supportColor": "#EE6666",
+    "voiceActress": {
+      "nameJa": "直田姬奈"
+    },
+    "school": "月之森女子学园",
+    "grade": null,
+    "bio": "无论是在学校还是在社交网络上都是备受追捧的万人迷。和上原绯玛丽、今井莉莎并称邦邦三辣妹 虽然性格开朗直爽，但老是因为随心所欲的做事方法让周围的人备受折磨气人角色，说话时偶尔会加上“超”来强调语气。",
+    "tags": [],
+    "image": "/images/characters/morfonica/toko.webp",
+    "refs": {
+      "heightCm": 1,
+      "supportColor": 1
+    }
+  },
+  {
+    "id": "nanami",
+    "nameZh": "广町七深",
+    "nameJa": "広町 七深",
+    "nameRomaji": "Hiromachi Nanami",
+    "bandId": "morfonica",
+    "part": "贝斯手",
+    "heightCm": 157,
+    "birthday": "6月16日",
+    "zodiac": "双子座",
+    "themeColor": null,
+    "supportColor": "#EE7744",
+    "voiceActress": {
+      "nameJa": "西尾夕香"
+    },
+    "school": "月之森女子学园",
+    "grade": null,
+    "bio": "向往着普通但有些特别与众不同的女孩子比如打邦邦全是GOOD。总是在意自己与他人会不会产生分歧，因此会为了融入周围环境而隐藏包括才能在内的真实的自己。",
+    "tags": [],
+    "image": "/images/characters/morfonica/nanami.webp",
+    "refs": {
+      "birthday": 2,
+      "heightCm": 1,
+      "supportColor": 1
+    }
+  },
+  {
+    "id": "tsukushi",
+    "nameZh": "二叶筑紫",
+    "nameJa": "二葉 つくし",
+    "nameRomaji": "Futaba Tsukushi",
+    "bandId": "morfonica",
+    "part": "鼓手/队长",
+    "heightCm": 150,
+    "birthday": "9月15日",
+    "zodiac": "处女座",
+    "themeColor": null,
+    "supportColor": "#EE7788",
+    "voiceActress": {
+      "nameJa": "mika"
+    },
+    "school": "月之森女子学园",
+    "grade": null,
+    "bio": "总是满怀信心的班长，同时也是Morfonica的队长。一直都很认真，但有时也会因为脑子一热干些蠢事。",
+    "tags": [],
+    "image": "/images/characters/morfonica/tsukushi.webp",
+    "refs": {
+      "heightCm": 1,
+      "supportColor": 1
+    }
+  },
+  {
+    "id": "rui",
+    "nameZh": "八潮瑠唯",
+    "nameJa": "八潮 瑠唯",
+    "nameRomaji": "Yashio Rui",
+    "bandId": "morfonica",
+    "part": "小提琴手",
+    "heightCm": 169,
+    "birthday": "11月19日",
+    "zodiac": "天蝎座",
+    "themeColor": null,
+    "supportColor": "#669988",
+    "voiceActress": {
+      "nameJa": "Ayasa"
+    },
+    "school": "月之森女子学园",
+    "grade": null,
+    "bio": "立于年级成绩顶尖的才女。从初中开始就是学生会的成员，多才多艺。",
+    "tags": [],
+    "image": "/images/characters/morfonica/rui.webp",
+    "refs": {
+      "supportColor": 1,
+      "heightCm": 1
+    }
+  },
+  {
+    "id": "tomori",
+    "nameZh": "高松灯",
+    "nameJa": "高松 燈",
+    "nameRomaji": "Takamatsu Tomori",
+    "bandId": "mygo",
+    "part": "主唱",
+    "heightCm": 155,
+    "birthday": "11月22日",
+    "zodiac": "天蝎座",
+    "themeColor": null,
+    "supportColor": "#77BBDD",
+    "voiceActress": {
+      "nameJa": "羊宫妃那"
+    },
+    "school": "羽丘女子学园",
+    "grade": "高中一年级",
+    "bio": "羽丘女子学园高中一年级学生，与千早爱音、梅里千樱梨同在1-A班。同时还是从前任学生会长冰川日菜处继承来的学校天文部唯一社员。",
+    "tags": [],
+    "image": "/images/characters/mygo/tomori.webp",
+    "refs": {
+      "heightCm": 2,
+      "supportColor": 1
+    }
+  },
+  {
+    "id": "anon",
+    "nameZh": "千早爱音",
+    "nameJa": "千早 愛音",
+    "nameRomaji": "Chihaya Anon",
+    "bandId": "mygo",
+    "part": "吉他手",
+    "heightCm": 160,
+    "birthday": "9月8日",
+    "zodiac": "处女座",
+    "themeColor": null,
+    "supportColor": null,
+    "voiceActress": {
+      "nameJa": "立石凛"
+    },
+    "school": "羽丘女子学园",
+    "grade": "高中一年级",
+    "bio": "MyGO!!!!!的吉他手，羽丘女子学园高中一年级学生。成绩优秀，精力充沛，品学兼优的优等生，且具备相当的交流力和行动力，初中时代就在班里极具人气，并且担任学生会长。",
+    "tags": [],
+    "image": "/images/characters/mygo/anon.webp",
+    "refs": {
+      "heightCm": 2
+    }
+  },
+  {
+    "id": "rana",
+    "nameZh": "要乐奈",
+    "nameJa": "要 楽奈",
+    "nameRomaji": "Kaname Rāna",
+    "bandId": "mygo",
+    "part": "吉他手",
+    "heightCm": 150,
+    "birthday": "2月22日",
+    "zodiac": "双鱼座",
+    "themeColor": null,
+    "supportColor": "#77DD77",
+    "voiceActress": {
+      "nameJa": "青木阳菜"
+    },
+    "school": "花咲川女子学园",
+    "grade": "初中三年级",
+    "bio": "MyGO!!!!!的吉他手，花咲川女子学园初中三年级学生，在LIVE HOUSE「RiNG」里神出鬼没的古怪女孩，因为觉得乐队很有趣所以加入了乐队。有着像是猫一般捉摸不透的个性，总是按照自己的步调行动。",
+    "tags": [],
+    "image": "/images/characters/mygo/rana.webp",
+    "refs": {
+      "heightCm": 1,
+      "supportColor": 1,
+      "nameRomaji": 1
+    }
+  },
+  {
+    "id": "soyo",
+    "nameZh": "长崎爽世",
+    "nameJa": "長崎 そよ",
+    "nameRomaji": "Nagasaki Soyo",
+    "bandId": "mygo",
+    "part": "贝斯手",
+    "heightCm": 162,
+    "birthday": null,
+    "zodiac": null,
+    "themeColor": null,
+    "supportColor": "#FFDD88",
+    "voiceActress": {
+      "nameJa": "小日向美香"
+    },
+    "school": "月之森女子学园",
+    "grade": "高中一年级",
+    "bio": "月之森女子学园高中一年级学生，在吹奏乐部司职低音提琴，并先后担任过乐队CRYCHIC和MyGO!!!!!的贝斯手。CRYCHIC时期使用指弹，MyGO!!!!!时期大多使用拨片。",
+    "tags": [],
+    "image": "/images/characters/mygo/soyo.webp",
+    "notes": {
+      "birthday": "争议待核对（候选：5月27日 / 6月3日 / 6月4日）"
+    },
+    "refs": {
+      "heightCm": 1,
+      "supportColor": 1
+    }
+  },
+  {
+    "id": "taki",
+    "nameZh": "椎名立希",
+    "nameJa": "椎名 立希",
+    "nameRomaji": "Shiina Taki",
+    "bandId": "mygo",
+    "part": "鼓手",
+    "heightCm": null,
+    "birthday": "8月9日",
+    "zodiac": "狮子座",
+    "themeColor": null,
+    "supportColor": null,
+    "voiceActress": {
+      "nameJa": "林鼓子"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中一年级",
+    "bio": "MyGO!!!!!的鼓手，同时也负责作曲，在拿到灯的歌词以后，创作出切合她世界观的歌曲。花咲川女子学园高中一年级学生，和八幡海铃、三角初华同一个班级。",
+    "tags": [],
+    "image": "/images/characters/mygo/taki.webp"
+  },
+  {
+    "id": "uika",
+    "nameZh": "三角初华",
+    "nameJa": "三角初華",
+    "nameRomaji": "Uika Misumi",
+    "bandId": "ave-mujica",
+    "part": "主唱",
+    "heightCm": 160,
+    "birthday": "6月26日",
+    "zodiac": "巨蟹座",
+    "themeColor": null,
+    "supportColor": "#BB9955",
+    "voiceActress": {
+      "nameJa": "佐佐木李子"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中一年级",
+    "bio": "花咲川女子学园高中1年级，和椎名立希、八幡海铃是同班同学，因工作原因经常缺课，但同学老师已经对此习以为常，还会在初华早退时祝她工作顺利。担任偶像团体sumimi的吉他手及作词、作曲，艺名初华（不称姓）。",
+    "tags": [],
+    "image": "/images/characters/ave-mujica/uika.webp",
+    "refs": {
+      "heightCm": 1,
+      "supportColor": 1,
+      "nameJa": 1,
+      "nameRomaji": 1
+    }
+  },
+  {
+    "id": "sakiko",
+    "nameZh": "丰川祥子",
+    "nameJa": "豊川 祥子",
+    "nameRomaji": "Sakiko Togawa",
+    "bandId": "ave-mujica",
+    "part": "键盘手",
+    "heightCm": 155,
+    "birthday": "2月14日",
+    "zodiac": "水瓶座",
+    "themeColor": null,
+    "supportColor": "#7799CC",
+    "voiceActress": {
+      "nameJa": "高尾奏音"
+    },
+    "school": "羽丘女子学园",
+    "grade": "高中一年级",
+    "bio": "丰川祥子原是月之森女子学园初三学生，丰川集团的千金，与若叶睦、长崎爽世以及Morfonica五人是同校生，后来祥子转学到羽丘女子学园，现为高中一年级生。祥子是推动CRYCHIC组建的人，也是该乐队的键盘手。",
+    "tags": [],
+    "image": "/images/characters/ave-mujica/sakiko.webp",
+    "refs": {
+      "heightCm": 1,
+      "supportColor": 1,
+      "nameRomaji": 1
+    }
+  },
+  {
+    "id": "mutsumi",
+    "nameZh": "若叶睦",
+    "nameJa": "若葉 睦",
+    "nameRomaji": "Mutsumi Wakaba",
+    "bandId": "ave-mujica",
+    "part": "吉他手",
+    "heightCm": 153,
+    "birthday": "1月14日",
+    "zodiac": "摩羯座",
+    "themeColor": null,
+    "supportColor": "#779977",
+    "voiceActress": {
+      "nameJa": "渡濑结月"
+    },
+    "school": "月之森女子学园",
+    "grade": "高中一年级",
+    "bio": "月之森女子学园高中1年级。曾是CRYCHIC的吉他手，丰川祥子的青梅竹马。",
+    "tags": [],
+    "image": "/images/characters/ave-mujica/mutsumi.webp",
+    "refs": {
+      "heightCm": 2,
+      "supportColor": 1,
+      "nameRomaji": 1
+    }
+  },
+  {
+    "id": "umiri",
+    "nameZh": "八幡海铃",
+    "nameJa": "八幡 海鈴",
+    "nameRomaji": "Umiri Yahata",
+    "bandId": "ave-mujica",
+    "part": "贝斯手",
+    "heightCm": 158,
+    "birthday": "4月7日",
+    "zodiac": "白羊座",
+    "themeColor": null,
+    "supportColor": "#335566",
+    "voiceActress": {
+      "nameJa": "冈田梦以"
+    },
+    "school": "花咲川女子学园",
+    "grade": "高中一年级",
+    "bio": "花咲川女子学园高中1年级学生。贝斯技巧达到了职业水准，曾同时担任30个乐团的支援乐手。",
+    "tags": [],
+    "image": "/images/characters/ave-mujica/umiri.webp",
+    "refs": {
+      "heightCm": 1,
+      "supportColor": 1,
+      "voiceActress": 1,
+      "nameRomaji": 1
+    }
+  },
+  {
+    "id": "nyamu",
+    "nameZh": "祐天寺若麦",
+    "nameJa": "祐天寺 にゃむ",
+    "nameRomaji": null,
+    "bandId": "ave-mujica",
+    "part": "鼓手",
+    "heightCm": null,
+    "birthday": "6月1日",
+    "zodiac": "双子座",
+    "themeColor": null,
+    "supportColor": "#AA4477",
+    "voiceActress": {
+      "nameJa": "米泽茜"
+    },
+    "school": "都立艺术学院",
+    "grade": null,
+    "bio": "人气上升中，并爱自称为「喵姆亲（日语：にゃむち）」的美妆类视频博主，投稿在PosTube。视频主要是化妆类，但也在挑战制作其他类型的视频。",
+    "tags": [],
+    "image": "/images/characters/ave-mujica/nyamu.webp",
+    "refs": {
+      "birthday": 2,
+      "supportColor": 1,
+      "school": 1
+    }
+  }
+]

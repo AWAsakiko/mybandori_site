@@ -1,0 +1,56 @@
+[
+  {
+    "id": "poppin-party",
+    "name": "Poppin'Party",
+    "color": "#FF3377",
+    "colorLight": "#FFDDEE"
+  },
+  {
+    "id": "afterglow",
+    "name": "Afterglow",
+    "color": "#E53344",
+    "colorLight": "#FFDDDD"
+  },
+  {
+    "id": "hello-happy-world",
+    "name": "Hello, Happy World!",
+    "color": "#FFDD00",
+    "colorLight": "#FFFFDD"
+  },
+  {
+    "id": "pastel-palettes",
+    "name": "Pastel＊Palettes",
+    "color": "#33DDAA",
+    "colorLight": "#DDFFEE"
+  },
+  {
+    "id": "roselia",
+    "name": "Roselia",
+    "color": "#3344AA",
+    "colorLight": "#DDDDFF"
+  },
+  {
+    "id": "raise-a-suilin",
+    "name": "RAISE A SUILEN",
+    "color": "#33CCCC",
+    "colorLight": null
+  },
+  {
+    "id": "morfonica",
+    "name": "Morfonica",
+    "color": "#33AAFF",
+    "colorLight": null
+  },
+  {
+    "id": "mygo",
+    "name": "MyGO!!!!!",
+    "color": "#3388BB",
+    "colorLight": null
+  },
+  {
+    "id": "ave-mujica",
+    "name": "Ave Mujica",
+    "color": "#881144",
+    "colorLight": null
+  }
+]

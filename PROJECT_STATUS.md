@@ -1,5 +1,11 @@
 # 项目状态（2026-11-10 暂停点）
 
+## Git 仓库
+
+- 远程：https://github.com/AWAsakiko/mybandori_site
+- 分支：`main`（已推送，提交 `b3c5d71`）
+- 后续推送后 Vercel 可自动部署
+
 ## 一句话总结
 
 **代码已完成，本地因网络限制无法连接 Supabase，尚未做真实数据库联调。**
@@ -48,7 +54,7 @@
 
 ## 下一步（在 Vercel 上完成）
 
-1. 打开 https://vercel.com/drop ，把根目录的 `deploy.zip` 拖进去（已排除 `node_modules`、`.next`、`.env.local`）。
+1. 打开 https://vercel.com/new ，选择 **Import Git Repository**，导入 `AWAsakiko/mybandori_site`（以后每次 push 自动部署）。
 2. 在 Vercel 项目 → **Settings → Environment Variables** 配置 4 个变量：
 
 | 变量 | 说明 |

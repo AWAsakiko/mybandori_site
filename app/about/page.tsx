@@ -8,8 +8,8 @@ export default function AboutPage() {
       <header className="space-y-2">
         <h1 className="text-2xl font-bold">关于本站</h1>
         <p className="leading-relaxed text-slate-600">
-          本站是粉丝向的 BanG Dream!（邦多利）角色资料图鉴，收录 9 支乐队、45 名角色的资料与
-          队员之间的小故事。
+          AWAsakiko的资料站目前以 BanG Dream!（邦多利）角色资料为主，收录 9 支乐队、45 名角色的
+          资料与队员之间的小故事。
         </p>
       </header>
 

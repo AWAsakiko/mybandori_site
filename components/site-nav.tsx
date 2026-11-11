@@ -53,14 +53,12 @@ export function SiteNav() {
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-2 px-3 sm:px-4">
         <Link
           href="/"
-          className="shrink-0 whitespace-nowrap text-base font-bold tracking-wide sm:text-lg"
+          className="shrink-0 whitespace-nowrap text-sm font-bold tracking-wide sm:text-lg"
         >
           <span className="hidden sm:inline">
-            邦多利<span className="text-rose-500">·</span>角色资料站
+            AWAsakiko<span className="text-rose-500">·</span>的资料站
           </span>
-          <span className="sm:hidden">
-            邦多利<span className="text-rose-500">·</span>站
-          </span>
+          <span className="sm:hidden">AWAsakiko</span>
         </Link>
         <nav className="flex min-w-0 items-center gap-0.5 overflow-x-auto text-xs sm:gap-1 sm:text-sm">
           {links.map((link) => (

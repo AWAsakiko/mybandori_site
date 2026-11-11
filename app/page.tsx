@@ -2,20 +2,21 @@ import type { Metadata } from "next";
 import { HomeSections } from "@/components/home-sections";
 
 export const metadata: Metadata = {
-  title: { absolute: "主站" },
+  title: { absolute: "主站 | AWAsakiko的资料站" },
   description:
-    "邦多利、明日方舟、火影忍者、学术与论坛的聚合资料站。",
+    "AWAsakiko 的资料站：邦多利、明日方舟、火影忍者、学术与论坛的聚合入口。",
   openGraph: {
-    title: "主站",
+    title: "AWAsakiko的资料站",
+    siteName: "AWAsakiko的资料站",
     description:
-      "邦多利、明日方舟、火影忍者、学术与论坛的聚合资料站。",
+      "AWAsakiko 的资料站：邦多利、明日方舟、火影忍者、学术与论坛的聚合入口。",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "主站",
+    title: "AWAsakiko的资料站",
     description:
-      "邦多利、明日方舟、火影忍者、学术与论坛的聚合资料站。",
+      "AWAsakiko 的资料站：邦多利、明日方舟、火影忍者、学术与论坛的聚合入口。",
   },
 };
 

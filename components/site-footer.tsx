@@ -27,7 +27,7 @@ export function SiteFooter() {
         className="cursor-default select-none"
         title=""
       >
-        粉丝向资料站 · MVP · 角色与素材版权归 BanG Dream! 企划方所有
+         AWAsakiko的资料站 · 粉丝向资料站 · 角色与素材版权归原企划方所有
       </p>
       <p className="mt-1">素材来源：萌娘百科（非商业展示），详见「关于」页</p>
     </footer>

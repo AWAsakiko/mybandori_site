@@ -11,23 +11,23 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
   title: {
-    default: "邦多利角色资料站",
-    template: "%s | 邦多利角色资料站",
+    default: "AWAsakiko的资料站",
+    template: "%s | AWAsakiko的资料站",
   },
   description:
-    "粉丝向 BanG Dream! 角色资料图鉴：9 支乐队、45 名角色，支持按乐队、学校、年级、应援色筛选与搜索，收录队员小故事。",
+    "AWAsakiko 的资料站：收录邦多利、明日方舟、火影忍者、学术与论坛等板块。",
   openGraph: {
     type: "website",
     locale: "zh_CN",
-    siteName: "邦多利角色资料站",
-    title: "邦多利角色资料站",
+    siteName: "AWAsakiko的资料站",
+    title: "AWAsakiko的资料站",
     description:
-      "9 支乐队、45 名角色的粉丝向资料图鉴：担当、声优、生日、应援色与队员小故事。",
+      "AWAsakiko 的资料站：邦多利、明日方舟、火影忍者、学术与论坛。",
   },
   twitter: {
     card: "summary",
-    title: "邦多利角色资料站",
-    description: "9 支乐队、45 名角色的粉丝向资料图鉴。",
+    title: "AWAsakiko的资料站",
+    description: "AWAsakiko 的资料站：邦多利、明日方舟、火影忍者、学术与论坛。",
   },
 };
 

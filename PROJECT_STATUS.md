@@ -55,6 +55,8 @@
 ## 下一步（在 Vercel 上完成）
 
 1. 打开 https://vercel.com/new ，选择 **Import Git Repository**，导入 `AWAsakiko/mybandori_site`（以后每次 push 自动部署）。
+
+   > 环境变量可手动添加，或运行 `scripts/setup-vercel-env.ps1` 一键写入（见 `scripts/使用说明.md`）。
 2. 在 Vercel 项目 → **Settings → Environment Variables** 配置 4 个变量：
 
 | 变量 | 说明 |

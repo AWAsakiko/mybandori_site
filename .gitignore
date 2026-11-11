@@ -1,4 +1,4 @@
-# dependencies
+﻿# dependencies
 node_modules
 
 # next.js build output
@@ -13,3 +13,7 @@ next-env.d.ts
 # misc
 *.tsbuildinfo
 .DS_Store
+
+# vercel local link
+.vercel
+

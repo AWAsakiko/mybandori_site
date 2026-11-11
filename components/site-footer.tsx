@@ -22,6 +22,9 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-slate-200/80 py-6 text-center text-xs text-slate-400">
+      <p aria-label="站主" className="mb-2 text-[11px] text-slate-400">
+        站主：AWAsakiko
+      </p>
       <p
         onClick={handleSecretClick}
         className="cursor-default select-none"

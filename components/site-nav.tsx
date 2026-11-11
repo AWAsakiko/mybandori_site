@@ -5,14 +5,7 @@ import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
 
-const links = [
-  { href: "/", label: "首页" },
-  { href: "/characters", label: "角色" },
-  { href: "/bands", label: "乐队" },
-  { href: "/stories", label: "小故事" },
-  { href: "/forum", label: "论坛" },
-  { href: "/about", label: "关于" },
-];
+const links = [{ href: "/about", label: "关于" }];
 
 const sections = [
   { label: "主站", href: "/" },

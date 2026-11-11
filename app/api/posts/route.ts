@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin, supabaseErrorMessage } from "@/lib/supabase";
-import { getAuthFromRequest } from "@/lib/auth";
+import { getSession } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +31,7 @@ function publicPost(p: PostRow) {
 }
 
 /** 获取帖子：游客只返回昵称/内容；管理员或站主返回完整数据（含联系方式） */
-export async function GET(req: Request) {
+export async function GET() {
   const supabase = getSupabaseAdmin();
   if (!supabase) {
     return NextResponse.json(
@@ -40,8 +40,8 @@ export async function GET(req: Request) {
     );
   }
 
-  const auth = getAuthFromRequest(req);
-  const isAdmin = Boolean(auth);
+  const session = await getSession();
+  const isAdmin = Boolean(session);
 
   const { data, error } = await supabase
     .from("posts")

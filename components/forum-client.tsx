@@ -32,7 +32,7 @@ function formatDate(value: string): string {
 }
 
 export function ForumClient() {
-  const { token, isAdmin } = useAuth();
+  const { role, isAdmin } = useAuth();
   const [posts, setPosts] = useState<Post[]>([]);
   const [adminView, setAdminView] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -48,9 +48,7 @@ export function ForumClient() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const headers: Record<string, string> = {};
-      if (token) headers.Authorization = `Bearer ${token}`;
-      const res = await fetch("/api/posts", { headers, cache: "no-store" });
+      const res = await fetch("/api/posts", { cache: "no-store" });
       const data = (await res.json().catch(() => ({}))) as {
         posts?: Post[];
         admin?: boolean;
@@ -69,11 +67,11 @@ export function ForumClient() {
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     void load();
-  }, [load]);
+  }, [load, role]);
 
   const validate = (): string | null => {
     if (!nickname.trim()) return "请填写昵称";
@@ -137,7 +135,6 @@ export function ForumClient() {
   };
 
   const upload = async (file: File) => {
-    if (!token) return;
     if (file.size > 5 * 1024 * 1024) {
       setError("图片不能超过 5MB");
       return;
@@ -149,7 +146,6 @@ export function ForumClient() {
       form.append("file", file);
       const res = await fetch("/api/upload", {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
         body: form,
       });
       const data = (await res.json().catch(() => ({}))) as {
@@ -166,12 +162,10 @@ export function ForumClient() {
   };
 
   const remove = async (id: string) => {
-    if (!token) return;
     if (!window.confirm("确定删除这条帖子吗？删除后将不再展示。")) return;
     try {
       const res = await fetch(`/api/posts/${id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) throw new Error(data.error || "删除失败");

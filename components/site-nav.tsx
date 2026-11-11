@@ -63,23 +63,33 @@ export function SiteNav() {
               {link.label}
             </Link>
           ))}
+
           {isOwner ? (
             <Link
               href="/admin"
-              className="whitespace-nowrap rounded-full bg-rose-50 px-2 py-1.5 font-medium text-rose-600 transition hover:bg-rose-100 sm:px-3"
+              className="whitespace-nowrap rounded-full bg-sky-50 px-2 py-1.5 font-medium text-sky-700 transition hover:bg-sky-100 sm:px-3"
             >
               管理后台
             </Link>
           ) : null}
-          {ready && role !== "visitor" ? (
-            <button
-              type="button"
-              onClick={logout}
-              className="whitespace-nowrap rounded-full px-2 py-1.5 text-slate-400 transition hover:bg-white/80 hover:text-slate-600 sm:px-3"
-              title={`当前身份：${role === "owner" ? "站主" : "管理员"}`}
-            >
-              退出
-            </button>
+
+          {ready ? (
+            role === "visitor" ? (
+              <Link
+                href="/login"
+                className="whitespace-nowrap rounded-full border border-slate-300 px-2 py-1.5 text-slate-600 transition hover:border-slate-400 hover:bg-white/80 hover:text-slate-900 sm:px-3"
+              >
+                站主登录
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={() => void logout()}
+                className="whitespace-nowrap rounded-full px-2 py-1.5 text-slate-400 transition hover:bg-white/80 hover:text-slate-600 sm:px-3"
+              >
+                退出登录
+              </button>
+            )
           ) : null}
         </nav>
       </div>

@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { requireOwner } from "@/lib/auth";
+import { requireOwnerSession } from "@/lib/session";
 
 /** 站主撤销（删除）管理员密钥 */
 export async function DELETE(
-  req: Request,
+  _req: Request,
   ctx: { params: Promise<{ id: string }> },
 ) {
-  if (!requireOwner(req).ok) {
+  if (!(await requireOwnerSession())) {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
   const supabase = getSupabaseAdmin();

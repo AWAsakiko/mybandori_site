@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin, supabaseErrorMessage } from "@/lib/supabase";
-import { requireOwner, newAdminKey } from "@/lib/auth";
+import { requireOwnerSession } from "@/lib/session";
+import { newAdminKey } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 /** 站主查看所有管理员密钥 */
-export async function GET(req: Request) {
-  if (!requireOwner(req).ok) {
+export async function GET() {
+  if (!(await requireOwnerSession())) {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
   const supabase = getSupabaseAdmin();
@@ -29,8 +30,8 @@ export async function GET(req: Request) {
 }
 
 /** 站主生成新的管理员密钥 */
-export async function POST(req: Request) {
-  if (!requireOwner(req).ok) {
+export async function POST() {
+  if (!(await requireOwnerSession())) {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
   const supabase = getSupabaseAdmin();

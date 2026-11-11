@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdminSession } from "@/lib/session";
 
 const ALLOWED = new Map<string, string>([
   ["image/jpeg", "jpg"],
@@ -16,8 +16,7 @@ export const runtime = "nodejs";
 
 /** 上传帖子图片：仅管理员 / 站主 */
 export async function POST(req: Request) {
-  const auth = requireAdmin(req);
-  if (!auth.ok) {
+  if (!(await requireAdminSession())) {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
 

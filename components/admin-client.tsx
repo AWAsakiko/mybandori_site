@@ -8,23 +8,20 @@ type AdminKey = {
   id: string;
   key: string;
   created_at: string;
+  status?: string;
 };
 
 export function AdminClient() {
-  const { isOwner, token, ready } = useAuth();
+  const { isOwner, ready } = useAuth();
   const [keys, setKeys] = useState<AdminKey[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [justCreated, setJustCreated] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    if (!token) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/keys", {
-        headers: { Authorization: `Bearer ${token}` },
-        cache: "no-store",
-      });
+      const res = await fetch("/api/admin/keys", { cache: "no-store" });
       const data = (await res.json().catch(() => ({}))) as {
         keys?: AdminKey[];
         error?: string;
@@ -37,20 +34,16 @@ export function AdminClient() {
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     if (ready && isOwner) void load();
   }, [ready, isOwner, load]);
 
   const create = async () => {
-    if (!token) return;
     setError(null);
     try {
-      const res = await fetch("/api/admin/keys", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch("/api/admin/keys", { method: "POST" });
       const data = (await res.json().catch(() => ({}))) as {
         key?: AdminKey;
         error?: string;
@@ -64,15 +57,11 @@ export function AdminClient() {
   };
 
   const revoke = async (id: string) => {
-    if (!token) return;
     if (!window.confirm("确定作废这个管理员密钥吗？对方将立即失去管理员权限。")) {
       return;
     }
     try {
-      const res = await fetch(`/api/admin/keys/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(`/api/admin/keys/${id}`, { method: "DELETE" });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) throw new Error(data.error || "撤销失败");
       await load();
@@ -100,13 +89,13 @@ export function AdminClient() {
       <div className="py-12 text-center">
         <h1 className="text-xl font-bold">管理后台</h1>
         <p className="mt-2 text-sm text-slate-500">
-          该页面仅站主可访问。请通过页脚隐藏入口登录站主账号。
+          该页面仅站主可访问，请先到登录页使用站主密码登录。
         </p>
         <Link
-          href="/"
-          className="mt-4 inline-block rounded-full bg-rose-500 px-4 py-2 text-sm font-medium text-white"
+          href="/login"
+          className="mt-4 inline-block rounded-full bg-sky-600 px-4 py-2 text-sm font-medium text-white"
         >
-          返回首页
+          前往登录
         </Link>
       </div>
     );
@@ -128,29 +117,27 @@ export function AdminClient() {
           <button
             type="button"
             onClick={() => void create()}
-            className="rounded-full bg-rose-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-rose-600"
+            className="rounded-full bg-sky-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-700"
           >
-            生成新密钥
+            生成管理员密钥
           </button>
         </div>
 
         {justCreated ? (
-          <div className="rounded-xl bg-emerald-50 p-3 text-xs text-emerald-700">
+          <div className="bg-emerald-50 p-3 text-xs text-emerald-700">
             已生成并复制到剪贴板：
             <code className="ml-1 break-all font-mono">{justCreated}</code>
           </div>
         ) : null}
 
         {error ? (
-          <p className="rounded-lg bg-rose-50 px-3 py-2 text-xs text-rose-600">
-            {error}
-          </p>
+          <p className="bg-rose-50 px-3 py-2 text-xs text-rose-600">{error}</p>
         ) : null}
 
         {loading ? (
           <p className="text-sm text-slate-500">加载中…</p>
         ) : keys.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-400">
+          <p className="py-6 text-center text-sm text-slate-400">
             还没有生成过管理员密钥。
           </p>
         ) : (
@@ -181,7 +168,7 @@ export function AdminClient() {
                     onClick={() => void revoke(item.id)}
                     className="text-xs text-rose-500 hover:underline"
                   >
-                    作废
+                    一键作废
                   </button>
                 </div>
               </li>

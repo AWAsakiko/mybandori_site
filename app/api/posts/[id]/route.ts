@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdminSession } from "@/lib/session";
 
 /** 软删除（隐藏）帖子：仅管理员 / 站主 */
 export async function DELETE(
-  req: Request,
+  _req: Request,
   ctx: { params: Promise<{ id: string }> },
 ) {
-  const auth = requireAdmin(req);
-  if (!auth.ok) {
+  if (!(await requireAdminSession())) {
     return NextResponse.json({ error: "未授权" }, { status: 401 });
   }
 

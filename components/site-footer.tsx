@@ -1,10 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
-import { useAuth } from "@/components/auth-provider";
 
 export function SiteFooter() {
-  const { openActivation } = useAuth();
+  const router = useRouter();
   const [count, setCount] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -13,7 +13,7 @@ export function SiteFooter() {
     if (timer.current) clearTimeout(timer.current);
     if (next >= 5) {
       setCount(0);
-      openActivation("admin");
+      router.push("/login");
       return;
     }
     setCount(next);
@@ -30,7 +30,7 @@ export function SiteFooter() {
         className="cursor-default select-none"
         title=""
       >
-         AWAsakiko的资料站 · 粉丝向资料站 · 角色与素材版权归原企划方所有
+        AWAsakiko的资料站 · 粉丝向资料站 · 角色与素材版权归原企划方所有
       </p>
       <p className="mt-1">素材来源：萌娘百科（非商业展示），详见「关于」页</p>
     </footer>

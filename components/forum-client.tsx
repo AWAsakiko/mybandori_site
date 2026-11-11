@@ -183,7 +183,7 @@ export function ForumClient() {
 
   return (
     <div className="space-y-6">
-      <header className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <header className="space-y-2 py-2">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h1 className="text-2xl font-bold sm:text-3xl">论坛</h1>
           {adminView ? (
@@ -204,7 +204,7 @@ export function ForumClient() {
 
       <form
         onSubmit={submit}
-        className="space-y-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm"
+        className="space-y-3 py-4"
       >
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
@@ -310,11 +310,11 @@ export function ForumClient() {
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">最新帖子</h2>
         {loading ? (
-          <p className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-500">
+          <p className="py-6 text-sm text-slate-500">
             加载中…
           </p>
         ) : posts.length === 0 ? (
-          <p className="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-8 text-center text-sm text-slate-400">
+          <p className="py-10 text-center text-sm text-slate-400">
             还没有帖子，来抢沙发吧。
           </p>
         ) : (
@@ -322,7 +322,7 @@ export function ForumClient() {
             {posts.map((post) => (
               <li
                 key={post.id}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="space-y-2 py-4"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">

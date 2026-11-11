@@ -97,7 +97,7 @@ export function AdminClient() {
 
   if (!isOwner) {
     return (
-      <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+      <div className="py-12 text-center">
         <h1 className="text-xl font-bold">管理后台</h1>
         <p className="mt-2 text-sm text-slate-500">
           该页面仅站主可访问。请通过页脚隐藏入口登录站主账号。
@@ -114,7 +114,7 @@ export function AdminClient() {
 
   return (
     <div className="space-y-6">
-      <header className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <header className="space-y-2 py-2">
         <h1 className="text-2xl font-bold">管理后台</h1>
         <p className="mt-2 text-sm leading-relaxed text-slate-500">
           生成管理员密钥并发送给你信任的人。管理员可以查看联系方式、删除帖子、上传图片；
@@ -122,7 +122,7 @@ export function AdminClient() {
         </p>
       </header>
 
-      <section className="space-y-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+      <section className="space-y-3 py-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-lg font-semibold">管理员密钥</h2>
           <button

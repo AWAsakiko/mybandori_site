@@ -552,7 +552,7 @@
     "voiceActress": {
       "nameJa": "Raychell"
     },
-    "school": null,
+    "school": "都立艺术学院",
     "grade": null,
     "bio": "RAISE A SUILEN 的主唱兼贝斯手，以艺名 LAYER 活动，真实身份为和奏瑞依。",
     "tags": [],
@@ -807,7 +807,14 @@
     "refs": {
       "heightCm": 2,
       "supportColor": 1
-    }
+    },
+    "schoolStage": "高中部",
+    "previousSchools": [
+      {
+        "name": "千登世中学（ちとせ中学）",
+        "stage": null
+      }
+    ]
   },
   {
     "id": "anon",
@@ -831,7 +838,14 @@
     "image": "/images/characters/mygo/anon.webp",
     "refs": {
       "heightCm": 2
-    }
+    },
+    "schoolStage": "高中部",
+    "previousSchools": [
+      {
+        "name": "袋森中学",
+        "stage": null
+      }
+    ]
   },
   {
     "id": "rana",
@@ -857,7 +871,10 @@
       "heightCm": 1,
       "supportColor": 1,
       "nameRomaji": 1
-    }
+    },
+    "schoolStage": "初中部",
+    "previousSchools": [],
+    "schoolNote": "尚未升学"
   },
   {
     "id": "soyo",
@@ -885,7 +902,14 @@
     "refs": {
       "heightCm": 1,
       "supportColor": 1
-    }
+    },
+    "schoolStage": "高中部",
+    "previousSchools": [
+      {
+        "name": "月之森女子学园",
+        "stage": "初中部"
+      }
+    ]
   },
   {
     "id": "taki",
@@ -906,7 +930,14 @@
     "grade": "高中一年级",
     "bio": "MyGO!!!!!的鼓手，同时也负责作曲，在拿到灯的歌词以后，创作出切合她世界观的歌曲。花咲川女子学园高中一年级学生，和八幡海铃、三角初华同一个班级。",
     "tags": [],
-    "image": "/images/characters/mygo/taki.webp"
+    "image": "/images/characters/mygo/taki.webp",
+    "schoolStage": "高中部",
+    "previousSchools": [
+      {
+        "name": "羽丘女子学园",
+        "stage": "初中部"
+      }
+    ]
   },
   {
     "id": "uika",
@@ -959,7 +990,14 @@
       "heightCm": 1,
       "supportColor": 1,
       "nameRomaji": 1
-    }
+    },
+    "schoolStage": "高中部",
+    "previousSchools": [
+      {
+        "name": "月之森女子学园",
+        "stage": "初中部"
+      }
+    ]
   },
   {
     "id": "mutsumi",
@@ -985,7 +1023,14 @@
       "heightCm": 2,
       "supportColor": 1,
       "nameRomaji": 1
-    }
+    },
+    "schoolStage": "高中部",
+    "previousSchools": [
+      {
+        "name": "月之森女子学园",
+        "stage": "初中部"
+      }
+    ]
   },
   {
     "id": "umiri",

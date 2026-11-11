@@ -38,24 +38,16 @@ export default async function BandDetailPage({ params }: Props) {
         ← 返回乐队总览
       </Link>
 
-      <header
-        className="rounded-3xl border border-slate-200 bg-white p-6"
-        style={{ borderLeftColor: band.color, borderLeftWidth: 8 }}
-      >
-        <p className="text-xs uppercase tracking-[0.25em] text-slate-400">
-          Band
-        </p>
-        <h1 className="mt-2 text-2xl font-bold">{band.name}</h1>
-        <p className="mt-1 text-sm text-slate-500">
-          {members.length} 名成员 · 主题色{" "}
-          <span className="inline-flex items-center gap-1 align-middle">
-            <span
-              className="inline-block h-3 w-3 rounded-full"
-              style={{ backgroundColor: band.color }}
-            />
-            {band.color}
-          </span>
-        </p>
+      <header className="space-y-2">
+        <div className="flex items-center gap-3">
+          <span
+            className="inline-block h-3 w-3 shrink-0 rounded-full"
+            style={{ backgroundColor: band.color }}
+            title={band.color}
+            aria-label={`主题色 ${band.color}`}
+          />
+          <h1 className="text-2xl font-bold">{band.name}</h1>
+        </div>
       </header>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">

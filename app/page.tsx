@@ -7,32 +7,15 @@ export default function HomePage() {
   const featuredStories = allStories.slice(0, 4);
 
   return (
-    <div className="space-y-12">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-rose-500">
-          BanG Dream! Fan Archive
-        </p>
-        <h1 className="mt-3 text-3xl font-bold sm:text-4xl">
+    <div className="space-y-6 sm:space-y-12">
+      <section className="space-y-3 pt-2">
+        <h1 className="text-3xl font-bold sm:text-4xl">
           邦多利角色资料站
         </h1>
-        <p className="mt-3 max-w-2xl leading-relaxed text-slate-600">
+        <p className="max-w-2xl leading-relaxed text-slate-600">
           浏览 BanG Dream! 企划 9 支乐队的 45 名角色：担当、声优、生日、应援色、乐队主题色，
           以及队员之间的小故事。资料持续核对中，未查证的字段会明确标注。
         </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            href="/characters"
-            className="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
-          >
-            浏览全部角色
-          </Link>
-          <Link
-            href="/stories"
-            className="rounded-full border border-slate-300 px-5 py-2 text-sm font-medium transition hover:bg-slate-100"
-          >
-            看小故事
-          </Link>
-        </div>
       </section>
 
       <section className="space-y-3">
@@ -42,7 +25,7 @@ export default function HomePage() {
             <Link
               key={band.id}
               href={`/characters?band=${band.id}`}
-              className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm transition hover:border-slate-400"
+              className="block px-2 py-3 text-sm transition-colors hover:bg-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400"
             >
               <span className="flex items-center gap-2">
                 <span
@@ -65,7 +48,7 @@ export default function HomePage() {
           <h2 className="text-lg font-semibold">角色预览</h2>
           <Link
             href="/characters"
-            className="text-sm text-rose-600 transition hover:underline"
+            className="text-sm text-slate-600 transition hover:text-slate-900 hover:underline"
           >
             查看全部 →
           </Link>
@@ -87,15 +70,12 @@ export default function HomePage() {
             查看全部 →
           </Link>
         </div>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {featuredStories.map((story) => (
-            <article
-              key={story.id}
-              className="rounded-2xl border border-slate-200 bg-white p-4 text-sm shadow-sm"
-            >
+            <article key={story.id} className="space-y-2 py-4">
               <h3 className="font-semibold">{story.title}</h3>
-              <p className="mt-2 leading-relaxed text-slate-600">{story.text}</p>
-              <p className="mt-2 text-xs text-slate-400">来源：{story.source}</p>
+              <p className="leading-relaxed text-slate-600">{story.text}</p>
+              <p className="text-xs text-slate-400">来源：{story.source}</p>
             </article>
           ))}
         </div>

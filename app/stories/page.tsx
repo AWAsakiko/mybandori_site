@@ -15,12 +15,9 @@ export default function StoriesPage() {
         </p>
       </header>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         {allStories.map((story) => (
-          <article
-            key={story.id}
-            className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-          >
+          <article key={story.id} className="space-y-3 py-4">
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="font-semibold">{story.title}</h2>
               {story.members.map((memberId) => {
@@ -39,7 +36,7 @@ export default function StoriesPage() {
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
               {story.text}
             </p>
-            <p className="mt-3 text-xs text-slate-400">来源：{story.source}</p>
+            <p className="text-xs text-slate-400">来源：{story.source}</p>
           </article>
         ))}
       </div>

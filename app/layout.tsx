@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/components/auth-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { SiteSidebar } from "@/components/site-sidebar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -45,8 +46,13 @@ export default function RootLayout({
       >
         <AuthProvider>
           <SiteNav />
-          <main className="mx-auto w-full max-w-6xl px-4 py-8">{children}</main>
-          <SiteFooter />
+          <SiteSidebar />
+          <div className="lg:pl-48">
+            <main className="mx-auto w-full max-w-6xl px-4 py-8">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
         </AuthProvider>
       </body>
     </html>

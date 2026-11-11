@@ -9,6 +9,11 @@ export type Band = {
   colorLight?: string | null;
 };
 
+export type PreviousSchool = {
+  name: string;
+  stage?: string | null;
+};
+
 export type Character = {
   id: string;
   nameZh: string;
@@ -23,6 +28,9 @@ export type Character = {
   supportColor: string | null;
   voiceActress: { nameJa: string; nameZh?: string } | null;
   school: string | null;
+  schoolStage?: string | null;
+  previousSchools?: PreviousSchool[] | null;
+  schoolNote?: string | null;
   grade: string | null;
   bio: string | null;
   tags: string[];
@@ -57,4 +65,30 @@ export function getCharactersByBand(bandId: string): Character[] {
 
 export function getStoriesForCharacter(id: string): Story[] {
   return allStories.filter((s) => s.members.includes(id));
+}
+
+/** 现就读学段：优先使用数据里的 schoolStage，其次按年级/学校名推断 */
+export function getSchoolStage(character: Character): string | null {
+  if (character.schoolStage) return character.schoolStage;
+  if (!character.school) return null;
+  if (character.school.includes("大学")) return "大学";
+  if (character.grade?.includes("高中")) return "高中部";
+  if (character.grade?.includes("初中")) return "初中部";
+  return null;
+}
+
+export function getPreviousSchool(character: Character): PreviousSchool | null {
+  return character.previousSchools?.[0] ?? null;
+}
+
+/** 现就读大学视为已高中毕业 */
+export function isGraduated(character: Character): boolean {
+  return Boolean(character.school?.includes("大学"));
+}
+
+/** 学校筛选：同时匹配现就读与曾就读 */
+export function matchesSchool(character: Character, school: string): boolean {
+  if (!school) return true;
+  if (character.school === school) return true;
+  return Boolean(character.previousSchools?.some((p) => p.name === school));
 }

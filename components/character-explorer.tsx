@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { CharacterCard } from "@/components/character-card";
-import type { Band, Character } from "@/lib/data";
+import { matchesSchool, type Band, type Character } from "@/lib/data";
 
 type Props = {
   characters: Character[];
@@ -26,8 +26,13 @@ export function CharacterExplorer({ characters, bands }: Props) {
   const schools = useMemo(
     () =>
       Array.from(
-        new Set(characters.map((c) => c.school).filter(Boolean)),
-      ) as string[],
+        new Set(
+          characters.flatMap((c) => [
+            c.school,
+            ...(c.previousSchools?.map((p) => p.name) ?? []),
+          ]),
+        ),
+      ).filter(Boolean) as string[],
     [characters],
   );
   const grades = useMemo(
@@ -49,7 +54,7 @@ export function CharacterExplorer({ characters, bands }: Props) {
     const key = q.trim().toLowerCase();
     return characters.filter((c) => {
       if (bandId && c.bandId !== bandId) return false;
-      if (school && c.school !== school) return false;
+      if (school && !matchesSchool(c, school)) return false;
       if (grade && c.grade !== grade) return false;
       if (color && c.supportColor !== color) return false;
       if (key) {
@@ -81,6 +86,7 @@ export function CharacterExplorer({ characters, bands }: Props) {
       />
 
       <div className="space-y-2.5">
+        <p className="text-xs font-semibold text-slate-500">筛选</p>
         <Row label="乐队">
           <button className={chip(!bandId)} onClick={() => setBandId("")}>
             全部
@@ -105,7 +111,8 @@ export function CharacterExplorer({ characters, bands }: Props) {
               <button
                 key={s}
                 className={chip(school === s)}
-                onClick={() => setSchool(s)}
+                onClick={() => setSchool(school === s ? "" : s)}
+                title="包含现就读与曾就读"
               >
                 {s}
               </button>
@@ -152,11 +159,20 @@ export function CharacterExplorer({ characters, bands }: Props) {
         )}
       </div>
 
-      <p className="text-sm text-slate-500">共 {filtered.length} 名角色</p>
+      <p className="text-sm text-slate-500">
+        共 {filtered.length} 名角色
+        {school ? " · 角标「在读 / 曾就读」表示匹配方式" : ""}
+      </p>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {filtered.map((c) => (
-          <CharacterCard key={c.id} character={c} />
+          <CharacterCard
+            key={c.id}
+            character={c}
+            schoolBadge={
+              school ? (c.school === school ? "current" : "previous") : undefined
+            }
+          />
         ))}
       </div>
 

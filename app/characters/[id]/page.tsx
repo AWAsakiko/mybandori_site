@@ -5,7 +5,10 @@ import {
   getBand,
   getCharacter,
   getCharactersByBand,
+  getSchoolStage,
   getStoriesForCharacter,
+  getPreviousSchool,
+  isGraduated,
 } from "@/lib/data";
 import { CharacterCard } from "@/components/character-card";
 
@@ -35,6 +38,16 @@ export default async function CharacterDetailPage({ params }: Props) {
   );
   const stories = getStoriesForCharacter(character.id);
 
+  const schoolStage = getSchoolStage(character);
+  const schoolLabel = character.school
+    ? `${character.school}${schoolStage && schoolStage !== "大学" ? `（${schoolStage}）` : ""}`
+    : "暂无可靠来源";
+  const previousSchool = getPreviousSchool(character);
+  const previousSchoolLabel = previousSchool
+    ? `${previousSchool.name}${previousSchool.stage ? `（${previousSchool.stage}）` : ""}`
+    : (character.schoolNote ?? "暂无明确来源");
+  const graduated = isGraduated(character);
+
   const fields: Array<{ key: string; label: string; value: string | null }> = [
     { key: "nameJa", label: "日文原名", value: character.nameJa },
     { key: "nameRomaji", label: "罗马音", value: character.nameRomaji },
@@ -42,7 +55,6 @@ export default async function CharacterDetailPage({ params }: Props) {
     { key: "heightCm", label: "身高", value: character.heightCm ? `${character.heightCm} cm` : null },
     { key: "birthday", label: "生日", value: character.birthday },
     { key: "zodiac", label: "星座", value: character.zodiac },
-    { key: "school", label: "学校", value: character.school },
     { key: "grade", label: "年级", value: character.grade },
     {
       key: "voiceActress",
@@ -54,10 +66,14 @@ export default async function CharacterDetailPage({ params }: Props) {
   return (
     <div className="space-y-10">
       <div className="grid gap-8 md:grid-cols-[minmax(0,340px)_1fr]">
-        <div
-          className="rounded-3xl border border-slate-200 bg-white p-4"
-          style={{ borderTopColor: character.supportColor ?? band?.color ?? "#e2e8f0", borderTopWidth: 6 }}
-        >
+        <div className="space-y-3">
+          <div
+            className="h-1 w-16 rounded-full"
+            style={{
+              backgroundColor:
+                character.supportColor ?? band?.color ?? "#e2e8f0",
+            }}
+          />
           <div className="relative h-72 w-full">
             <Image
               src={character.image}
@@ -149,15 +165,33 @@ export default async function CharacterDetailPage({ params }: Props) {
             </div>
           </dl>
 
+          <div className="grid gap-3 text-sm sm:grid-cols-2">
+            <div>
+              <p className="text-slate-400">现就读</p>
+              <p className="font-medium text-slate-700">{schoolLabel}</p>
+            </div>
+            <div>
+              <p className="text-slate-400">曾就读</p>
+              <p className="flex flex-wrap items-center gap-2 font-medium text-slate-700">
+                {previousSchoolLabel}
+                {graduated ? (
+                  <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold text-white">
+                    已毕业
+                  </span>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
           {character.bio ? (
             <p className="text-sm leading-relaxed text-slate-600">
               {character.bio}
             </p>
           ) : null}
 
-          <p className="rounded-xl bg-amber-50 px-4 py-3 text-xs leading-relaxed text-amber-700">
-            部分字段（生日、身高、学校、年级、应援色等）仍在核对中，页面会显示「资料核对中」。
-            我们只收录可查证的内容，不做猜测。
+          <p className="bg-amber-50/70 px-3 py-2 text-xs leading-relaxed text-amber-700">
+            部分字段（生日、身高、学校、年级、应援色等）仍在核对中，页面会显示「? 暂无可靠来源」；
+            1–2 个来源的数值会带「参考」角标。我们只收录可查证的内容，不做猜测。
           </p>
         </div>
       </div>
@@ -165,15 +199,12 @@ export default async function CharacterDetailPage({ params }: Props) {
       {stories.length > 0 ? (
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">相关小故事</h2>
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {stories.map((story) => (
-              <article
-                key={story.id}
-                className="rounded-2xl border border-slate-200 bg-white p-4 text-sm shadow-sm"
-              >
+              <article key={story.id} className="space-y-2 py-4">
                 <h3 className="font-semibold">{story.title}</h3>
-                <p className="mt-2 leading-relaxed text-slate-600">{story.text}</p>
-                <p className="mt-2 text-xs text-slate-400">来源：{story.source}</p>
+                <p className="leading-relaxed text-slate-600">{story.text}</p>
+                <p className="text-xs text-slate-400">来源：{story.source}</p>
               </article>
             ))}
           </div>
@@ -181,13 +212,16 @@ export default async function CharacterDetailPage({ params }: Props) {
       ) : null}
 
       {siblings.length > 0 ? (
-        <section className="space-y-3">
+        <section
+          className="space-y-3"
+          aria-label={`${band?.name ?? "同队"}的其他成员`}
+        >
           <h2 className="text-lg font-semibold">
             {band?.name ?? "同队"}的其他成员
           </h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {siblings.map((member) => (
-              <CharacterCard key={member.id} character={member} />
+              <CharacterCard key={member.id} character={member} showBand={false} />
             ))}
           </div>
         </section>

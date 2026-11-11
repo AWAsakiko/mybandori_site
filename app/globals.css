@@ -4,5 +4,22 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC",
     "Microsoft YaHei", sans-serif;
   background-color: #f8fafc;
+  background-image: linear-gradient(
+    135deg,
+    #fdf2f8 0%,
+    #ffffff 42%,
+    #eff6ff 100%
+  );
+  background-attachment: fixed;
   color: #1e293b;
+}
+
+/* 主站首页：淡蓝 / 淡紫 */
+body:has([data-portal]) {
+  background-image: linear-gradient(
+    135deg,
+    #eff6ff 0%,
+    #ffffff 45%,
+    #ede9fe 100%
+  );
 }

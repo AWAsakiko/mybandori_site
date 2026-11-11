@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/auth-provider";
+import { RouteBackground } from "@/components/route-background";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { SiteSidebar } from "@/components/site-sidebar";
@@ -37,13 +38,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body
-        className="min-h-screen text-slate-800 antialiased"
-        style={{
-          backgroundImage:
-            "linear-gradient(135deg, #fdf2f8 0%, #ffffff 42%, #eff6ff 100%)",
-        }}
-      >
+      <body className="min-h-screen text-slate-800 antialiased">
+        <RouteBackground />
         <AuthProvider>
           <SiteNav />
           <SiteSidebar />

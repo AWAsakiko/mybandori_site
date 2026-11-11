@@ -50,16 +50,9 @@ export function SiteSidebar() {
         : "text-slate-600 hover:bg-white/70 hover:text-slate-900"
     }`;
 
-  const mobileClass = (active: boolean) =>
-    `whitespace-nowrap rounded-full px-3 py-1.5 text-xs transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400 ${
-      active
-        ? "bg-sky-50 font-medium text-sky-700"
-        : "text-slate-600 hover:bg-white/70 hover:text-slate-900"
-    }`;
-
   return (
     <>
-      <aside className="fixed bottom-0 left-0 top-14 z-10 hidden w-48 flex-col border-r border-white/60 bg-white/55 backdrop-blur-xl lg:flex">
+      <aside className="fixed bottom-0 left-0 top-24 z-10 hidden w-48 flex-col border-r border-white/60 bg-white/55 backdrop-blur-xl lg:flex">
         <div className="flex-1 overflow-y-auto p-3">
           <p className="px-3 pb-2 pt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
             板块
@@ -82,9 +75,7 @@ export function SiteSidebar() {
                 <Link
                   key={section.label}
                   href={section.href ?? "/"}
-                  className={desktopClass(
-                    isActive(pathname, section.href),
-                  )}
+                  className={desktopClass(isActive(pathname, section.href))}
                 >
                   {section.label}
                 </Link>
@@ -98,32 +89,6 @@ export function SiteSidebar() {
           资料持续核对中
         </p>
       </aside>
-
-      <nav
-        className="flex gap-2 overflow-x-auto border-b border-white/60 bg-white/60 px-3 py-2 backdrop-blur-md lg:hidden"
-        aria-label="板块导航"
-      >
-        {sections.map((section) =>
-          section.soon ? (
-            <button
-              key={section.label}
-              type="button"
-              onClick={() => showSoon(section.label)}
-              className={mobileClass(false)}
-            >
-              {section.label}
-            </button>
-          ) : (
-            <Link
-              key={section.label}
-              href={section.href ?? "/"}
-              className={mobileClass(isActive(pathname, section.href))}
-            >
-              {section.label}
-            </Link>
-          ),
-        )}
-      </nav>
 
       {toast ? (
         <div

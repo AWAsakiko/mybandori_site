@@ -1,14 +1,24 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useSearch } from "@/components/search-provider";
 
 const STORAGE_KEY = "sakiko_easter_egg_shown";
 
 export function SakikoEasterEgg() {
+  const pathname = usePathname();
   const { openSearch } = useSearch();
 
   useEffect(() => {
+    if (pathname !== "/characters/sakiko") {
+      try {
+        window.sessionStorage.removeItem(STORAGE_KEY);
+      } catch {
+        /* ignore */
+      }
+      return;
+    }
     let alreadyShown = false;
     try {
       alreadyShown = window.sessionStorage.getItem(STORAGE_KEY) === "1";
@@ -34,7 +44,7 @@ export function SakikoEasterEgg() {
         /* ignore */
       }
     };
-  }, [openSearch]);
+  }, [pathname, openSearch]);
 
   return null;
 }

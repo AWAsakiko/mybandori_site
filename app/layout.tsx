@@ -5,6 +5,7 @@ import { RouteBackground } from "@/components/route-background";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { SearchProvider } from "@/components/search-provider";
+import { SakikoEasterEgg } from "@/components/sakiko-easter-egg";
 import { SiteSidebar } from "@/components/site-sidebar";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function RootLayout({
             <SiteFooter />
           </div>
           </AuthProvider>
+          <SakikoEasterEgg />
         </SearchProvider>
       </body>
     </html>

@@ -1,6 +1,13 @@
 import crypto from "crypto";
 
-export type Role = "admin" | "owner";
+export type SessionRole = "user" | "admin" | "owner";
+
+export type SessionPayload = {
+  role: SessionRole;
+  exp: number;
+  keyId?: string;
+  userId?: string;
+};
 
 const SECRET =
   process.env.AUTH_SECRET || process.env.OWNER_PASSWORD || "dev-only-secret";
@@ -9,17 +16,16 @@ function b64url(input: Buffer | string): string {
   return Buffer.from(input).toString("base64url");
 }
 
-export type SessionPayload = { role: Role; keyId?: string };
-
 export function signToken(
-  role: Role,
-  ttlSeconds = 60 * 60 * 24 * 7,
-  keyId?: string,
+  role: SessionRole,
+  ttlSeconds: number,
+  subject: { keyId?: string; userId?: string } = {},
 ): string {
-  const payload: { role: Role; exp: number; keyId?: string } = {
+  const payload: SessionPayload = {
     role,
     exp: Math.floor(Date.now() / 1000) + ttlSeconds,
-    ...(keyId ? { keyId } : {}),
+    ...(subject.keyId ? { keyId: subject.keyId } : {}),
+    ...(subject.userId ? { userId: subject.userId } : {}),
   };
   const data = b64url(JSON.stringify(payload));
   const sig = crypto
@@ -48,13 +54,24 @@ export function verifyToken(
     const payload = JSON.parse(Buffer.from(data, "base64url").toString("utf8"));
     if (typeof payload.exp !== "number") return null;
     if (payload.exp < Math.floor(Date.now() / 1000)) return null;
-    if (payload.role !== "admin" && payload.role !== "owner") return null;
-    if (payload.keyId !== undefined && typeof payload.keyId !== "string") {
+    if (
+      payload.role !== "user" &&
+      payload.role !== "admin" &&
+      payload.role !== "owner"
+    ) {
       return null;
     }
-    return payload.keyId
-      ? { role: payload.role, keyId: payload.keyId }
-      : { role: payload.role };
+    if (payload.role === "user" && typeof payload.userId !== "string") {
+      return null;
+    }
+    if (
+      (payload.role === "admin" || payload.role === "owner") &&
+      payload.keyId !== undefined &&
+      typeof payload.keyId !== "string"
+    ) {
+      return null;
+    }
+    return payload as SessionPayload;
   } catch {
     return null;
   }

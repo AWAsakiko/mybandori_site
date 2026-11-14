@@ -30,7 +30,7 @@ function isSectionActive(pathname: string, href?: string): boolean {
 }
 
 export function SiteNav() {
-  const { role, isOwner, ready, logout } = useAuth();
+  const { adminRole, user, isOwner, ready, logout } = useAuth();
   const pathname = usePathname();
   const [toast, setToast] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -40,6 +40,8 @@ export function SiteNav() {
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => setToast(null), 2400);
   };
+
+  const loggedIn = Boolean(user) || adminRole !== "guest";
 
   return (
     <header className="sticky top-0 z-20 border-b border-white/60 bg-white/70 shadow-sm backdrop-blur-md">
@@ -64,6 +66,12 @@ export function SiteNav() {
             </Link>
           ))}
 
+          {user ? (
+            <span className="hidden whitespace-nowrap rounded-full bg-emerald-50 px-2 py-1.5 text-[11px] text-emerald-700 sm:inline sm:px-3">
+              当前身份：{user.nickname}
+            </span>
+          ) : null}
+
           {isOwner ? (
             <Link
               href="/admin"
@@ -73,7 +81,7 @@ export function SiteNav() {
             </Link>
           ) : null}
 
-          {ready && role !== "visitor" ? (
+          {ready && loggedIn ? (
             <button
               type="button"
               onClick={() => void logout()}

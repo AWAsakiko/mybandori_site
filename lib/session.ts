@@ -1,17 +1,56 @@
 import { cookies } from "next/headers";
-import { signToken, verifyToken, type Role } from "@/lib/auth";
+import { signToken, verifyToken } from "@/lib/auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
-export const SESSION_COOKIE = "awasakiko_session";
+export const ADMIN_COOKIE = "admin_session";
+export const USER_COOKIE = "user_session";
+const LEGACY_COOKIE = "awasakiko_session";
 
 const DAY = 60 * 60 * 24;
 const REMEMBER_SECONDS = 15 * DAY;
 const SESSION_SECONDS = 12 * 60 * 60;
 
-export async function getSession(): Promise<{ role: Role; keyId?: string } | null> {
+export type AdminRole = "admin" | "owner";
+
+export type UserSession = {
+  id: string;
+  nickname: string;
+  contact: string;
+};
+
+async function readCookie(name: string): Promise<string | undefined> {
   const store = await cookies();
-  const payload = verifyToken(store.get(SESSION_COOKIE)?.value);
-  if (!payload) return null;
+  return store.get(name)?.value;
+}
+
+async function writeCookie(name: string, value: string, remember: boolean) {
+  const store = await cookies();
+  const maxAge = remember ? REMEMBER_SECONDS : SESSION_SECONDS;
+  store.set(name, value, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    ...(remember ? { maxAge } : {}),
+  });
+}
+
+async function expireCookie(name: string) {
+  const store = await cookies();
+  store.set(name, "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 0,
+    expires: new Date(0),
+  });
+}
+
+/** 管理员 / 站主会话（admin_session） */
+export async function getAdminSession(): Promise<{ role: AdminRole } | null> {
+  const payload = verifyToken(await readCookie(ADMIN_COOKIE));
+  if (!payload || payload.role === "user") return null;
 
   if (payload.role === "owner") {
     return { role: "owner" };
@@ -31,48 +70,76 @@ export async function getSession(): Promise<{ role: Role; keyId?: string } | nul
   if (error || !data) return null;
   if ((data.status ?? "active") === "revoked") return null;
 
-  return { role: "admin", keyId: payload.keyId };
+  return { role: "admin" };
 }
 
-export async function getRole(): Promise<"visitor" | Role> {
-  const session = await getSession();
-  return session?.role ?? "visitor";
+/** 普通用户会话（user_session） */
+export async function getUserSession(): Promise<UserSession | null> {
+  const payload = verifyToken(await readCookie(USER_COOKIE));
+  if (!payload || payload.role !== "user" || !payload.userId) return null;
+
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return null;
+
+  const { data, error } = await supabase
+    .from("users")
+    .select("id, nickname, contact")
+    .eq("id", payload.userId)
+    .maybeSingle();
+
+  if (error || !data) return null;
+  return {
+    id: String(data.id),
+    nickname: String(data.nickname),
+    contact: String(data.contact),
+  };
 }
 
-export async function requireAdminSession(): Promise<Role | null> {
-  const session = await getSession();
-  return session ? session.role : null;
+export async function getAdminRole(): Promise<"guest" | AdminRole> {
+  const session = await getAdminSession();
+  return session?.role ?? "guest";
+}
+
+export async function requireAdminSession(): Promise<AdminRole | null> {
+  const session = await getAdminSession();
+  return session?.role ?? null;
 }
 
 export async function requireOwnerSession(): Promise<boolean> {
-  const session = await getSession();
+  const session = await getAdminSession();
   return session?.role === "owner";
 }
 
-export async function setSessionCookie(
-  role: Role,
+export async function requireUserSession(): Promise<UserSession | null> {
+  return getUserSession();
+}
+
+export async function setAdminSessionCookie(
+  role: AdminRole,
   remember: boolean,
   keyId?: string,
 ) {
-  const store = await cookies();
   const maxAge = remember ? REMEMBER_SECONDS : SESSION_SECONDS;
-  store.set(SESSION_COOKIE, signToken(role, maxAge, keyId), {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    ...(remember ? { maxAge } : {}),
-  });
+  await writeCookie(
+    ADMIN_COOKIE,
+    signToken(role, maxAge, { keyId }),
+    remember,
+  );
 }
 
-export async function clearSessionCookie() {
-  const store = await cookies();
-  store.set(SESSION_COOKIE, "", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: 0,
-    expires: new Date(0),
-  });
+export async function setUserSessionCookie(userId: string, remember: boolean) {
+  const maxAge = remember ? REMEMBER_SECONDS : SESSION_SECONDS;
+  await writeCookie(
+    USER_COOKIE,
+    signToken("user", maxAge, { userId }),
+    remember,
+  );
+}
+
+export async function clearSessionCookies() {
+  await Promise.all([
+    expireCookie(ADMIN_COOKIE),
+    expireCookie(USER_COOKIE),
+    expireCookie(LEGACY_COOKIE),
+  ]);
 }

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { verifyOwnerPassword, type Role } from "@/lib/auth";
-import { setSessionCookie } from "@/lib/session";
+import { verifyOwnerPassword } from "@/lib/auth";
+import { setAdminSessionCookie } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "请输入站主密码或管理员密钥" }, { status: 400 });
   }
 
-  let role: Role | null = null;
+  let role: "admin" | "owner" | null = null;
   let keyId: string | undefined;
 
   if (verifyOwnerPassword(secret)) {
@@ -40,7 +40,6 @@ export async function POST(req: Request) {
     if (error) {
       return NextResponse.json({ error: "校验失败，请稍后再试" }, { status: 500 });
     }
-    // status 列为兼容旧表：存在且为 revoked 时视为失效
     if (data && (data.status ?? "active") !== "revoked") {
       role = "admin";
       keyId = String(data.id);
@@ -51,6 +50,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "密码或密钥无效" }, { status: 401 });
   }
 
-  await setSessionCookie(role, Boolean(body.remember), keyId);
+  await setAdminSessionCookie(role, Boolean(body.remember), keyId);
   return NextResponse.json({ role });
 }

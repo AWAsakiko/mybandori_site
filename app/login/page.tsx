@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LoginForm } from "@/components/login-form";
 
 export const metadata: Metadata = {
-  title: "登录",
+  title: "管理员登录",
   robots: { index: false, follow: false },
 };
 

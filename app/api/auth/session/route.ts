@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
-import { getRole } from "@/lib/session";
+import { getAdminSession, getUserSession } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const role = await getRole();
-  return NextResponse.json({ role });
+  const [admin, user] = await Promise.all([
+    getAdminSession(),
+    getUserSession(),
+  ]);
+
+  return NextResponse.json({
+    admin: admin?.role ?? null,
+    user: user ? { id: user.id, nickname: user.nickname } : null,
+  });
 }

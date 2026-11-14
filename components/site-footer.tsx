@@ -6,13 +6,13 @@ import { useAuth } from "@/components/auth-provider";
 
 export function SiteFooter() {
   const router = useRouter();
-  const { role, ready } = useAuth();
+  const { adminRole, user, ready } = useAuth();
   const [count, setCount] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleSecretClick = () => {
     // 已登录时不需要隐藏入口，正常使用导航栏的「退出登录」即可
-    if (!ready || role !== "visitor") return;
+    if (!ready || user || adminRole !== "guest") return;
     const next = count + 1;
     if (timer.current) clearTimeout(timer.current);
     if (next >= 5) {

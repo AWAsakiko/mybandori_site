@@ -5,20 +5,20 @@ import { useState } from "react";
 import { useAuth } from "@/components/auth-provider";
 
 export function LoginForm() {
-  const { role, ready, isOwner, refresh, logout } = useAuth();
+  const { adminRole, ready, isOwner, refresh, logout } = useAuth();
   const [secret, setSecret] = useState("");
   const [remember, setRemember] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (ready && role !== "visitor") {
+  if (ready && adminRole !== "guest") {
     return (
       <div className="space-y-4 bg-white/60 p-6 backdrop-blur">
         <h1 className="text-2xl font-bold">已登录</h1>
         <p className="text-sm text-slate-600">
           当前身份：
           <span className="font-medium text-slate-800">
-            {role === "owner" ? "站主" : "管理员"}
+            {adminRole === "owner" ? "站主" : "管理员"}
           </span>
         </p>
         <div className="flex flex-wrap gap-3 text-sm">
@@ -79,9 +79,9 @@ export function LoginForm() {
   return (
     <div className="space-y-5 bg-white/60 p-6 backdrop-blur">
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold">登录</h1>
+        <h1 className="text-2xl font-bold">管理员 / 站主登录</h1>
         <p className="text-sm leading-relaxed text-slate-600">
-          站主请输入站主密码；管理员请输入站主发放的管理员密钥。
+          这是管理员/站主入口，与普通用户登录分开。站主请输入站主密码；管理员请输入站主发放的管理员密钥。
         </p>
       </div>
 

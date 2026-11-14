@@ -1,34 +1,44 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin, supabaseErrorMessage } from "@/lib/supabase";
-import { getSession } from "@/lib/session";
+import { getAdminSession, requireUserSession } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
-const PHONE_RE = /^1[3-9]\d{9}$/;
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const UUID_RE = /^[0-9a-f-]{36}$/i;
 
 type ReplyRow = {
   id: string;
   post_id: string;
-  nickname: string;
-  contact: string;
+  user_id: string;
   content: string;
   created_at: string;
 };
 
-function isContact(value: string): boolean {
-  return PHONE_RE.test(value) || EMAIL_RE.test(value);
-}
+type UserRow = {
+  id: string;
+  nickname: string;
+  contact: string;
+};
 
-function publicReply(reply: ReplyRow) {
+function publicReply(reply: ReplyRow, user: UserRow | undefined, isAdmin: boolean) {
   return {
     id: reply.id,
     post_id: reply.post_id,
-    nickname: reply.nickname,
+    nickname: user?.nickname ?? "已注销用户",
     content: reply.content,
     created_at: reply.created_at,
+    ...(isAdmin && user ? { contact: user.contact } : {}),
   };
+}
+
+async function loadUsers(ids: string[]): Promise<Map<string, UserRow>> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase || ids.length === 0) return new Map();
+  const { data } = await supabase
+    .from("users")
+    .select("id, nickname, contact")
+    .in("id", Array.from(new Set(ids)));
+  return new Map((data ?? []).map((row) => [String(row.id), row as UserRow]));
 }
 
 const ipHits = new Map<string, number>();
@@ -67,12 +77,12 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "post_id 不合法" }, { status: 400 });
   }
 
-  const session = await getSession();
-  const isAdmin = Boolean(session);
+  const admin = await getAdminSession();
+  const isAdmin = Boolean(admin);
 
   const { data, error } = await supabase
     .from("replies")
-    .select("id, post_id, nickname, contact, content, created_at")
+    .select("id, post_id, user_id, content, created_at")
     .eq("post_id", postId)
     .order("created_at", { ascending: true });
 
@@ -84,9 +94,13 @@ export async function GET(req: Request) {
   }
 
   const rows = (data ?? []) as ReplyRow[];
+  const users = await loadUsers(rows.map((row) => row.user_id));
+
   return NextResponse.json({
     admin: isAdmin,
-    replies: isAdmin ? rows : rows.map(publicReply),
+    replies: rows.map((row) =>
+      publicReply(row, users.get(row.user_id), isAdmin),
+    ),
   });
 }
 
@@ -99,12 +113,12 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: {
-    post_id?: unknown;
-    nickname?: unknown;
-    contact?: unknown;
-    content?: unknown;
-  };
+  const user = await requireUserSession();
+  if (!user) {
+    return NextResponse.json({ error: "请先登录" }, { status: 401 });
+  }
+
+  let body: { post_id?: unknown; content?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -112,21 +126,10 @@ export async function POST(req: Request) {
   }
 
   const postId = typeof body.post_id === "string" ? body.post_id.trim() : "";
-  const nickname = typeof body.nickname === "string" ? body.nickname.trim() : "";
-  const contact = typeof body.contact === "string" ? body.contact.trim() : "";
   const content = typeof body.content === "string" ? body.content.trim() : "";
 
   if (!UUID_RE.test(postId)) {
     return NextResponse.json({ error: "post_id 不合法" }, { status: 400 });
-  }
-  if (!isContact(contact)) {
-    return NextResponse.json(
-      { error: "请填写正确的手机号或邮箱" },
-      { status: 400 },
-    );
-  }
-  if (nickname.length < 1 || nickname.length > 24) {
-    return NextResponse.json({ error: "昵称需为 1–24 个字符" }, { status: 400 });
   }
   if (content.length < 1 || content.length > 2000) {
     return NextResponse.json(
@@ -143,17 +146,14 @@ export async function POST(req: Request) {
     );
   }
 
-  const normalized = contact.includes("@") ? contact.toLowerCase() : contact;
-
   const { data, error } = await supabase
     .from("replies")
     .insert({
       post_id: postId,
-      nickname,
-      contact: normalized,
+      user_id: user.id,
       content,
     })
-    .select("id, post_id, nickname, contact, content, created_at")
+    .select("id, post_id, user_id, content, created_at")
     .single();
 
   if (error || !data) {
@@ -164,7 +164,7 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json(
-    { reply: publicReply(data as ReplyRow) },
+    { reply: publicReply(data as ReplyRow, { id: user.id, nickname: user.nickname, contact: user.contact }, false) },
     { status: 201 },
   );
 }

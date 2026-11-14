@@ -10,12 +10,19 @@ import {
   useState,
 } from "react";
 
-export type Role = "visitor" | "admin" | "owner";
+export type AdminRole = "guest" | "admin" | "owner";
+
+export type UserProfile = {
+  id: string;
+  nickname: string;
+};
 
 type AuthContextValue = {
-  role: Role;
+  adminRole: AdminRole;
+  user: UserProfile | null;
   isAdmin: boolean;
   isOwner: boolean;
+  isUser: boolean;
   ready: boolean;
   refresh: () => Promise<void>;
   logout: () => Promise<void>;
@@ -25,20 +32,28 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const [role, setRole] = useState<Role>("visitor");
+  const [adminRole, setAdminRole] = useState<AdminRole>("guest");
+  const [user, setUser] = useState<UserProfile | null>(null);
   const [ready, setReady] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
       const res = await fetch("/api/auth/session", { cache: "no-store" });
-      const data = (await res.json().catch(() => ({}))) as { role?: Role };
-      if (res.ok && (data.role === "admin" || data.role === "owner")) {
-        setRole(data.role);
-      } else {
-        setRole("visitor");
-      }
+      const data = (await res.json().catch(() => ({}))) as {
+        admin?: "admin" | "owner" | null;
+        user?: UserProfile | null;
+      };
+      setAdminRole(
+        data.admin === "admin" || data.admin === "owner" ? data.admin : "guest",
+      );
+      setUser(
+        data.user && typeof data.user.id === "string"
+          ? { id: data.user.id, nickname: String(data.user.nickname) }
+          : null,
+      );
     } catch {
-      setRole("visitor");
+      setAdminRole("guest");
+      setUser(null);
     } finally {
       setReady(true);
     }
@@ -59,20 +74,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch {
       /* ignore */
     }
-    setRole("visitor");
+    setAdminRole("guest");
+    setUser(null);
     router.refresh();
   }, [router]);
 
   const value = useMemo<AuthContextValue>(
     () => ({
-      role,
-      isAdmin: role === "admin" || role === "owner",
-      isOwner: role === "owner",
+      adminRole,
+      user,
+      isAdmin: adminRole === "admin" || adminRole === "owner",
+      isOwner: adminRole === "owner",
+      isUser: Boolean(user),
       ready,
       refresh,
       logout,
     }),
-    [role, ready, refresh, logout],
+    [adminRole, user, ready, refresh, logout],
   );
 
   return (

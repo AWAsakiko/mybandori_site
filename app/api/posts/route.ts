@@ -16,12 +16,14 @@ type UserRow = {
   id: string;
   nickname: string;
   contact: string;
+  role: string;
 };
 
 function publicPost(post: PostRow, user: UserRow | undefined, isAdmin: boolean) {
   return {
     id: post.id,
     nickname: user?.nickname ?? "已注销用户",
+    role: user?.role ?? "user",
     content: post.content,
     image_url: post.image_url,
     created_at: post.created_at,
@@ -34,7 +36,7 @@ async function loadUsers(ids: string[]): Promise<Map<string, UserRow>> {
   if (!supabase || ids.length === 0) return new Map();
   const { data } = await supabase
     .from("users")
-    .select("id, nickname, contact")
+    .select("id, nickname, contact, role")
     .in("id", Array.from(new Set(ids)));
   return new Map((data ?? []).map((row) => [String(row.id), row as UserRow]));
 }
@@ -153,7 +155,7 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json(
-    { post: publicPost(data as PostRow, { id: user.id, nickname: user.nickname, contact: user.contact }, false) },
+    { post: publicPost(data as PostRow, { id: user.id, nickname: user.nickname, contact: user.contact, role: user.role }, false) },
     { status: 201 },
   );
 }

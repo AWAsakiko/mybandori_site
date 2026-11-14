@@ -17,7 +17,7 @@ export function SiteFooter() {
     if (timer.current) clearTimeout(timer.current);
     if (next >= 5) {
       setCount(0);
-      router.push("/login");
+      router.push("/admin-login");
       return;
     }
     setCount(next);

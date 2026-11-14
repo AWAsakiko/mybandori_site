@@ -10,8 +10,23 @@ create table if not exists public.users (
   id uuid primary key default gen_random_uuid(),
   contact text not null unique,
   nickname text not null,
+  role text not null default 'user',
   created_at timestamptz not null default now()
 );
+
+alter table public.users add column if not exists role text not null default 'user';
+
+do $$
+begin
+  if not exists (select 1 from pg_constraint where conname = 'users_role_check') then
+    alter table public.users
+      add constraint users_role_check
+      check (role in ('user', 'admin', 'owner'));
+  end if;
+  if not exists (select 1 from pg_constraint where conname = 'users_contact_key') then
+    alter table public.users add constraint users_contact_key unique (contact);
+  end if;
+end $$;
 
 -- 帖子表（新结构：只关联 user_id）
 create table if not exists public.posts (
@@ -135,10 +150,14 @@ create table if not exists public.admin_keys (
   id uuid primary key default gen_random_uuid(),
   key text not null unique,
   status text not null default 'active',
+  bound_contact text,
+  bound_nickname text,
   created_at timestamptz not null default now()
 );
 
 alter table public.admin_keys add column if not exists status text not null default 'active';
+alter table public.admin_keys add column if not exists bound_contact text;
+alter table public.admin_keys add column if not exists bound_nickname text;
 
 -- RLS：不开放 anon 策略，服务端使用 service_role
 alter table public.users enable row level security;

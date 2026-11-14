@@ -16,6 +16,7 @@ export type UserSession = {
   id: string;
   nickname: string;
   contact: string;
+  role: string;
 };
 
 async function readCookie(name: string): Promise<string | undefined> {
@@ -83,7 +84,7 @@ export async function getUserSession(): Promise<UserSession | null> {
 
   const { data, error } = await supabase
     .from("users")
-    .select("id, nickname, contact")
+    .select("id, nickname, contact, role")
     .eq("id", payload.userId)
     .maybeSingle();
 
@@ -92,6 +93,7 @@ export async function getUserSession(): Promise<UserSession | null> {
     id: String(data.id),
     nickname: String(data.nickname),
     contact: String(data.contact),
+    role: String(data.role ?? "user"),
   };
 }
 

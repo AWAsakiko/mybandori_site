@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
 import { ReplySection } from "@/components/reply-section";
+import { RoleBadge } from "@/components/role-badge";
 
 type Post = {
   id: string;
   nickname: string;
+  role?: string;
   content: string;
   image_url: string | null;
   created_at: string;
@@ -299,6 +301,7 @@ export function ForumClient() {
               <li key={post.id} className="space-y-2 py-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
+                    <RoleBadge role={post.role} />
                     <span className="font-semibold">{post.nickname}</span>
                     {adminView && post.contact ? (
                       <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs text-amber-600">

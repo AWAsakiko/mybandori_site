@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -145,10 +145,6 @@ export function UserLoginForm() {
           {busy ? "登录中…" : needNickname ? "绑定并登录" : "登录"}
         </button>
       </form>
-
-      <p className="text-[11px] leading-relaxed text-slate-400">
-        普通用户登录与管理员/站主登录相互独立。管理员入口不会出现在这个页面。
-      </p>
 
       <Link href="/" className="text-xs text-slate-500 hover:underline">
         ← 返回主站

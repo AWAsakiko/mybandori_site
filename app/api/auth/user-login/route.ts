@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
   const { data: existing, error: findError } = await supabase
     .from("users")
-    .select("id, nickname")
+    .select("id, nickname, role")
     .eq("contact", normalized)
     .maybeSingle();
 
@@ -54,6 +54,12 @@ export async function POST(req: Request) {
   }
 
   if (existing) {
+    if (existing.role !== "user") {
+      return NextResponse.json(
+        { error: "该账号为管理员/站主，请使用管理员入口登录" },
+        { status: 403 },
+      );
+    }
     await setUserSessionCookie(String(existing.id), remember);
     return NextResponse.json({
       user: { id: String(existing.id), nickname: String(existing.nickname) },
@@ -75,7 +81,7 @@ export async function POST(req: Request) {
 
   const { data: created, error: createError } = await supabase
     .from("users")
-    .insert({ contact: normalized, nickname })
+    .insert({ contact: normalized, nickname, role: "user" })
     .select("id, nickname")
     .single();
 
@@ -83,10 +89,10 @@ export async function POST(req: Request) {
     // 并发下可能已被另一个请求创建，回查一次
     const { data: raced } = await supabase
       .from("users")
-      .select("id, nickname")
+      .select("id, nickname, role")
       .eq("contact", normalized)
       .maybeSingle();
-    if (raced) {
+    if (raced && raced.role === "user") {
       await setUserSessionCookie(String(raced.id), remember);
       return NextResponse.json({
         user: { id: String(raced.id), nickname: String(raced.nickname) },

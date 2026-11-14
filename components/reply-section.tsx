@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
+import { RoleBadge } from "@/components/role-badge";
 
 type Reply = {
   id: string;
   post_id: string;
   nickname: string;
+  role?: string;
   content: string;
   created_at: string;
   contact?: string;
@@ -145,6 +147,7 @@ export function ReplySection({ postId }: { postId: string }) {
             {visible.map((reply) => (
               <li key={reply.id} className="text-sm">
                 <div className="flex flex-wrap items-center gap-2">
+                  <RoleBadge role={reply.role} />
                   <span className="font-medium text-slate-800">
                     {reply.nickname}
                   </span>

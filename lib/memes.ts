@@ -34,28 +34,28 @@ export const memes: Meme[] = [
     slug: "325",
     title: "325",
     keys: ["325"],
-    summary: "明日方舟社群数字梗",
+    summary: "明日方舟 UP 主 Zc 的数字梗",
     detail:
-      "明日方舟社群中与 UP 主、直播或相关视频有关的数字梗，常出现在弹幕和评论区。不同直播间、不同时期的语境可能不同，具体所指建议结合 B站搜索结果和上下文判断。",
-    bilibiliUrl: bili("325 明日方舟"),
+      "与明日方舟 UP 主「魔法Zc目录」（Zc）相关的数字梗。325 这个数字在 Zc 的直播、肉鸽和线下活动里反复出现——比如 325 源石锭、嘉年华抽到 325 号、3 月 25 日下午 3:25 发布视频等，久而久之成了观众熟悉的固定梗。不同切片里的具体语境略有差别。",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1GkosY6EGp",
   },
   {
     slug: "947",
     title: "947",
     keys: ["947"],
-    summary: "BanG Dream! 圈内数字谐音梗",
+    summary: "邦邦「查卡 947」邪神卡面梗",
     detail:
-      "邦邦（BanG Dream!）社群中的数字谐音梗，常见于相关弹幕和评论区。它属于圈内约定俗成的数字玩法，具体含义会随语境变化；如果你是新人，结合视频上下文理解会更准确。",
-    bilibiliUrl: bili("947 邦邦"),
+      "《BanG Dream! 少女乐团派对》的卡牌编号梗：947 号卡是冰川日菜（Pastel*Palettes）的「日菜抽中的大奖」，因卡面画风过于诡异，被玩家戏称为「邪神」「947 警告」。后来「查卡 947」也成了邦邦社区看卡面、整活的固定梗。",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1UkgV67EU7",
   },
   {
     slug: "kskbl",
     title: "kskbl",
     keys: ["kskbl"],
-    summary: "康神开播了",
+    summary: "《无畏契约》主播康神开播了",
     detail:
-      "「康神开播了」的拼音首字母缩写，常见于直播、弹幕和粉丝社群，用来调侃主播开播或相关直播事件。属于直播圈缩写梗，脱离语境时容易看不懂。",
-    bilibiliUrl: bili("康神开播了"),
+      "《无畏契约》电竞圈的拼音缩写梗，全称「康神开播了」，用来调侃或提醒主播 zmjjkk（康康）开播。起因是表哥直播时弹幕疯狂刷「康神开播了」，他点进康康直播间看到对方在卖萌/整活，表情管理失控的切片爆火，之后 kskbl 成了圈内接头暗号；常见搭配还有 zdjd（真的假的）、wkzkbl（我靠真开播了）。",
+    bilibiliUrl: bili("kskbl"),
   },
   {
     slug: "233",

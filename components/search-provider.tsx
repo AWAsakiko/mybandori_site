@@ -4,7 +4,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -23,17 +22,6 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
 
   const openSearch = useCallback(() => setIsOpen(true), []);
   const closeSearch = useCallback(() => setIsOpen(false), []);
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        setIsOpen((value) => !value);
-      }
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
 
   const value = useMemo<SearchContextValue>(
     () => ({ openSearch, closeSearch, isOpen }),

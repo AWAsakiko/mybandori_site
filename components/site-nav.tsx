@@ -73,23 +73,14 @@ export function SiteNav() {
             </Link>
           ) : null}
 
-          {ready ? (
-            role === "visitor" ? (
-              <Link
-                href="/login"
-                className="whitespace-nowrap rounded-full border border-slate-300 px-2 py-1.5 text-slate-600 transition hover:border-slate-400 hover:bg-white/80 hover:text-slate-900 sm:px-3"
-              >
-                站主登录
-              </Link>
-            ) : (
-              <button
-                type="button"
-                onClick={() => void logout()}
-                className="whitespace-nowrap rounded-full px-2 py-1.5 text-slate-400 transition hover:bg-white/80 hover:text-slate-600 sm:px-3"
-              >
-                退出登录
-              </button>
-            )
+          {ready && role !== "visitor" ? (
+            <button
+              type="button"
+              onClick={() => void logout()}
+              className="whitespace-nowrap rounded-full px-2 py-1.5 text-slate-400 transition hover:bg-white/80 hover:text-slate-600 sm:px-3"
+            >
+              退出登录
+            </button>
           ) : null}
         </nav>
       </div>

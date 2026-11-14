@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { allBands, allCharacters, getBand } from "@/lib/data";
+import { allBands, allCharacters, allStories, getBand, getCharacter } from "@/lib/data";
 import { findExactMeme, memes } from "@/lib/memes";
 
 type Result = {
@@ -15,6 +15,13 @@ type Result = {
   subtitle?: string;
   href: string;
   isExact?: boolean;
+};
+
+type PostHit = {
+  id: string;
+  excerpt: string;
+  nickname: string;
+  created_at: string;
 };
 
 type Props = {
@@ -27,6 +34,8 @@ export function CommandPalette({ open, onClose }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
+  const [postHits, setPostHits] = useState<PostHit[]>([]);
+  const q = query.trim();
 
   useEffect(() => {
     if (!open) return;
@@ -41,9 +50,41 @@ export function CommandPalette({ open, onClose }: Props) {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) {
+      setPostHits([]);
+      return;
+    }
+    if (q.length < 2) {
+      setPostHits([]);
+      return;
+    }
+
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`, {
+          signal: controller.signal,
+          cache: "no-store",
+        });
+        if (!res.ok) return;
+        const data = (await res.json().catch(() => ({}))) as {
+          posts?: PostHit[];
+        };
+        setPostHits(data.posts ?? []);
+      } catch {
+        /* 忽略搜索请求失败 */
+      }
+    }, 250);
+
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [open, q]);
+
   if (!open) return null;
 
-  const q = query.trim();
   const exact = findExactMeme(q);
 
   const results: Result[] = [];
@@ -86,6 +127,7 @@ export function CommandPalette({ open, onClose }: Props) {
         character.nameRomaji,
         character.voiceActress?.nameJa,
         band?.name,
+        ...(character.tags ?? []),
       ]
         .filter(Boolean)
         .join(" ")
@@ -113,6 +155,30 @@ export function CommandPalette({ open, onClose }: Props) {
         title: band.name,
         subtitle: "乐队",
         href: `/bands/${band.id}`,
+      });
+    }
+
+    const storyMatches = allStories.filter((story) =>
+      [story.title, story.text, ...story.members.map((id) => getCharacter(id)?.nameZh ?? id)]
+        .join(" ")
+        .toLowerCase()
+        .includes(q.toLowerCase()),
+    );
+    for (const story of storyMatches.slice(0, 4)) {
+      results.push({
+        key: `story-${story.id}`,
+        title: story.title,
+        subtitle: "小故事",
+        href: "/stories",
+      });
+    }
+
+    for (const post of postHits.slice(0, 4)) {
+      results.push({
+        key: `post-${post.id}`,
+        title: post.excerpt,
+        subtitle: `论坛 · ${post.nickname}`,
+        href: `/forum#post-${post.id}`,
       });
     }
   }
@@ -176,7 +242,7 @@ export function CommandPalette({ open, onClose }: Props) {
         <ul className="mt-3 max-h-[55vh] overflow-y-auto">
           {results.length === 0 ? (
             <li className="px-3 py-6 text-center text-xs text-slate-400">
-              没有找到相关内容，试试 114514、kskbl 或「湛宇轩父亲」。
+              没有找到相关内容，试试 114514、kskbl、awsl 或「湛宇轩父亲」，也可以搜索角色、乐队、小故事。
             </li>
           ) : (
             results.map((result, index) => (

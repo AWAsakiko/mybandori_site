@@ -298,7 +298,7 @@ export function ForumClient() {
         ) : (
           <ul className="space-y-3">
             {posts.map((post) => (
-              <li key={post.id} className="space-y-2 py-4">
+              <li key={post.id} id={`post-${post.id}`} className="scroll-mt-24 space-y-2 py-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <RoleBadge role={post.role} />

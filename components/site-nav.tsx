@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
+import { useSearch } from "@/components/search-provider";
 
 const links = [{ href: "/about", label: "关于" }];
 
@@ -31,6 +32,7 @@ function isSectionActive(pathname: string, href?: string): boolean {
 
 export function SiteNav() {
   const { adminRole, user, isOwner, ready, logout } = useAuth();
+  const { openSearch } = useSearch();
   const pathname = usePathname();
   const [toast, setToast] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -65,6 +67,15 @@ export function SiteNav() {
               {link.label}
             </Link>
           ))}
+
+          <button
+            type="button"
+            onClick={openSearch}
+            className="whitespace-nowrap rounded-full px-2 py-1.5 text-slate-500 transition hover:bg-white/80 hover:text-slate-900 sm:px-3"
+            title="搜索（Ctrl/⌘ + K）"
+          >
+            搜索
+          </button>
 
           {user ? (
             <span className="hidden whitespace-nowrap rounded-full bg-emerald-50 px-2 py-1.5 text-[11px] text-emerald-700 sm:inline sm:px-3">

@@ -11,6 +11,7 @@ import {
   isGraduated,
 } from "@/lib/data";
 import { CharacterCard } from "@/components/character-card";
+import { SakikoEasterEgg } from "@/components/sakiko-easter-egg";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -65,6 +66,7 @@ export default async function CharacterDetailPage({ params }: Props) {
 
   return (
     <div className="space-y-10">
+      {character.id === "sakiko" ? <SakikoEasterEgg /> : null}
       <div className="grid gap-8 md:grid-cols-[minmax(0,340px)_1fr]">
         <div className="space-y-3">
           <div

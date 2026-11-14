@@ -4,6 +4,7 @@ import { AuthProvider } from "@/components/auth-provider";
 import { RouteBackground } from "@/components/route-background";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { SearchProvider } from "@/components/search-provider";
 import { SiteSidebar } from "@/components/site-sidebar";
 
 export const metadata: Metadata = {
@@ -40,7 +41,8 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className="min-h-screen text-slate-800 antialiased">
         <RouteBackground />
-        <AuthProvider>
+        <SearchProvider>
+          <AuthProvider>
           <SiteNav />
           <SiteSidebar />
           <div className="lg:pl-48">
@@ -49,7 +51,8 @@ export default function RootLayout({
             </main>
             <SiteFooter />
           </div>
-        </AuthProvider>
+          </AuthProvider>
+        </SearchProvider>
       </body>
     </html>
   );

@@ -26,7 +26,14 @@ export function SakikoEasterEgg() {
       openSearch();
     }, 60_000);
 
-    return () => window.clearTimeout(timer);
+    return () => {
+      window.clearTimeout(timer);
+      try {
+        window.sessionStorage.removeItem(STORAGE_KEY);
+      } catch {
+        /* ignore */
+      }
+    };
   }, [openSearch]);
 
   return null;

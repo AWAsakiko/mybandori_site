@@ -26,6 +26,19 @@ alter table public.posts add column if not exists hidden boolean default false;
 create index if not exists posts_created_at_idx on public.posts (created_at desc);
 create index if not exists posts_contact_idx on public.posts (contact);
 
+-- 回复表（嵌套在主帖下；主帖物理删除时级联删除）
+create table if not exists public.replies (
+  id uuid primary key default gen_random_uuid(),
+  post_id uuid not null references public.posts(id) on delete cascade,
+  nickname text not null,
+  contact text not null,
+  content text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists replies_post_id_created_at_idx
+  on public.replies (post_id, created_at asc);
+
 -- 管理员密钥（id、密钥、状态、创建时间）
 create table if not exists public.admin_keys (
   id uuid primary key default gen_random_uuid(),
@@ -40,9 +53,11 @@ alter table public.admin_keys add column if not exists status text not null defa
 -- RLS：不创建 anon 策略，游客无法直接读写；服务端使用 service_role 绕过
 alter table public.posts enable row level security;
 alter table public.admin_keys enable row level security;
+alter table public.replies enable row level security;
 
 drop policy if exists "no anon access posts" on public.posts;
 drop policy if exists "no anon access admin_keys" on public.admin_keys;
+drop policy if exists "no anon access replies" on public.replies;
 
 -- Storage：公开桶 forum_images（图片公开可读，上传仅服务端）
 insert into storage.buckets (id, name, public)

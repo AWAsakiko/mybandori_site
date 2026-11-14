@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/components/auth-provider";
+import { ReplySection } from "@/components/reply-section";
+import { IDENTITY_EVENT, loadIdentity, saveIdentity } from "@/lib/identity";
 
 type Post = {
   id: string;
@@ -44,6 +46,8 @@ export function ForumClient() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [remember, setRemember] = useState(false);
+  const [identityLoaded, setIdentityLoaded] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -72,6 +76,20 @@ export function ForumClient() {
   useEffect(() => {
     void load();
   }, [load, role]);
+
+  useEffect(() => {
+    const apply = () => {
+      const saved = loadIdentity();
+      if (!saved) return;
+      setNickname((prev) => prev || saved.identity.nickname);
+      setContact((prev) => prev || saved.identity.contact);
+      setRemember(saved.remember);
+      setIdentityLoaded(true);
+    };
+    apply();
+    window.addEventListener(IDENTITY_EVENT, apply);
+    return () => window.removeEventListener(IDENTITY_EVENT, apply);
+  }, []);
 
   const validate = (): string | null => {
     if (!nickname.trim()) return "请填写昵称";
@@ -121,8 +139,15 @@ export function ForumClient() {
       } catch {
         /* ignore */
       }
-      setNickname("");
-      setContact("");
+      saveIdentity(
+        { nickname: nickname.trim(), contact: contact.trim() },
+        remember,
+      );
+      setIdentityLoaded(true);
+      if (!remember) {
+        setNickname("");
+        setContact("");
+      }
       setContent("");
       setImageUrl(null);
       setNotice("发布成功！");
@@ -200,6 +225,11 @@ export function ForumClient() {
         onSubmit={submit}
         className="space-y-3 py-4"
       >
+        {identityLoaded && nickname ? (
+          <p className="text-[11px] text-slate-400">
+            当前身份：{nickname}，如需切换请清除浏览器缓存或修改输入框。
+          </p>
+        ) : null}
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
             <label className="text-xs font-medium text-slate-500">昵称</label>
@@ -275,6 +305,16 @@ export function ForumClient() {
             ) : null}
           </div>
         ) : null}
+
+        <label className="flex items-center gap-2 text-xs text-slate-500">
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={(e) => setRemember(e.target.checked)}
+            className="h-4 w-4 rounded border-slate-300"
+          />
+          记住我的昵称和联系方式
+        </label>
 
         {error ? (
           <p className="rounded-lg bg-rose-50 px-3 py-2 text-xs text-rose-600">
@@ -358,6 +398,7 @@ export function ForumClient() {
                     />
                   </div>
                 ) : null}
+                <ReplySection postId={post.id} />
               </li>
             ))}
           </ul>
